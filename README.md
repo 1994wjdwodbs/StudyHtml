@@ -34,11 +34,10 @@ namespace HelloWorldApp {
 ```
 실행결과
 ![실행결과](https://github.com/1994wjdwodbs/StudyHtml/blob/main/ref_images/console_result.png "절대경로")
-
 ![실행결과](ref_images/console_result.png "상대경로")
 
-<img src="ref_images/console_result.png" width="450px" height="300px" title="px(픽셀) 크기 설정" alt="RubberDuck"></img><br/>
-<img src="ref_images/console_result.png" width="40%" height="30%" title="px(픽셀) 크기 설정" alt="RubberDuck"></img>
+<img src="ref_images/console_result.png" width="450px" height="300px" title="px(픽셀) 크기 설정" alt="Result1"></img><br/>
+<img src="ref_images/console_result.png" width="40%" height="30%" title="px(픽셀) 크기 설정" alt="Result2"></img>
 
 참조링크
 - [Microsoft](https://www.microsoft.com)
