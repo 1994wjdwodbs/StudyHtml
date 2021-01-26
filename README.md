@@ -14,7 +14,7 @@ HTML 기본 학습
 
 - Hyper Text Markup Language 정의
 - __HTML__ _역사_
-- __HTML5__의 ~차이점~
+- __HTML5__의 ~_차이점_~
   * UL2
   * UL3
    - UL4
