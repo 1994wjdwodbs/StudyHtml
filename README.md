@@ -37,7 +37,7 @@ namespace HelloWorldApp {
 CSS 기본 학습
 
 > CSS is Cascading Style Sheets.
-<br\>`테스트 코드`
+<br/>`테스트 코드`
   
 -----------
 ## JAVASCRIPT
