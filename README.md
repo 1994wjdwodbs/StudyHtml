@@ -32,7 +32,10 @@ namespace HelloWorldApp {
  }
 }
 ```
-[실행결과](https://github.com/1994wjdwodbs/StudyHtml/blob/main/ref_images/console_result.png "결과")
+실행결과
+![실행결과](https://github.com/1994wjdwodbs/StudyHtml/blob/main/ref_images/console_result.png "실행결과")
+
+![실행결과](ref_images/console_result.png "실행결과")
 
 참조링크
 - [Microsoft](https://www.microsoft.com)
