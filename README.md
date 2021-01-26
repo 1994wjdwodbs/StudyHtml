@@ -13,8 +13,8 @@ HTML 기본 학습
 3. HTML5의 차이점
 
 - Hyper Text Markup Language 정의
-- HTML 역사
-- HTML5의 차이점
+- __HTML__ _역사_
+- __HTML5__의 ~차이점~
   * UL2
   * UL3
    - UL4
