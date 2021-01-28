@@ -9,4 +9,4 @@
 ## HTML5 입력 태그
 블라블라~~
 
-[이전](https://github.com/1994wjdwodbs/StudyHtml)
+[이전](../)
