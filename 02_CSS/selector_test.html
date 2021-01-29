@@ -17,12 +17,12 @@
                 overflow: hidden;
             }
             #aside {
-                width: 200px;
+                width: 300px;
                 float: left;
-                background: blue;
+                background: lawngreen;
             }
             #content {
-                width: 600px;
+                width: 500px;
                 float: left;
                 background: green;
             }
@@ -30,6 +30,17 @@
                 width: 800px;
                 margin: 0 auto;
                 background: teal;
+            }
+
+            .fruits {
+                color:red;
+                font-weight:bold;
+            }
+            .item {
+                color:salmon;
+            }
+            .footer {
+                background:darkgrey;
             }
         </style>
     </head>
@@ -40,13 +51,20 @@
         <div id="wrap">
             <div id="aside">
                 <h1>#aside 태그</h1>
+                <ul>
+                    <li class="fruits">사과</li>
+                    <li>배</li>
+                    <li>바나나</li>
+                    <li class="fruits">딸기</li>
+                </ul>
             </div>
             <div id="content">
                 <h1>#content 태그</h1>
             </div>
         </div>
         <div id="footer">
-            <h1>#footer 태그</h1>
+            <!-- 다중 class : 동시 적용 -->
+            <h1 class="item footer">#footer 태그</h1>
         </div>
 
     </body>
