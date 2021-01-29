@@ -6,24 +6,48 @@
     <title>Page Title</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <style>
-        #header h1 {
+        #header > h2 {
             color:red;
+        }
+        #nav > h2{
+            color:green;
         }
         #section h1 {
             color:orange;
+        }
+        h2:active {
+            color:blue;
+        }
+        h2:hover {
+            background-color: black;
+        }
+        input:enabled {
+            background-color: green;
+        }
+        input:disabled {
+            background-color: black;
+        }
+        input:focus {
+            background-color: brown;
         }
     </style>
 </head>
 <body>
     <div id="header">
-        <h1 class="title">Lorem ipsum</h1>
+        <h2 class="title">Lorem ipsum</h1>
         <div id="nav">
-            <h1>Navigation</h1>
+            <h2>Navigation</h2>
         </div>
+        <h3>subTitle</h3>
     </div>
     <div id="section">
         <h1 class="title">Lorem ipsum</h1>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste officia adipisci suscipit reprehenderit veniam quasi nam ab quidem at corporis reiciendis temporibus perspiciatis recusandae ratione qui labore, totam soluta dolores.</p>
+    </div>
+    <div>
+        <form>
+            아이디 <input type="text" name="userid"><br>
+            비밀번호 <input type="password" name="userpw" disabled><br>
     </div>
 </body>
 </html>
