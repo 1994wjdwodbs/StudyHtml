@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script>
+        var pi = 3.141592;
+        var radius = 10;
+        alert("원주율 = " + 2*pi*radius);
+        alert("원의 면적 = " + pi*radius*radius);
+
+        if(35 < 108) {
+            console.log("That's true.");
+        }
+        console.log("Done.");
+
+        var date = new Date();
+        var year = date.getFullYear();
+        var month = date.getMonth() + 1;
+        var day = date.getDay();
+        var hour = date.getHours();
+        var minute = date.getMinutes();
+        var second = date.getSeconds();
+
+        if(hour < 12) {
+            console.log("오전");
+        }
+         else {
+            console.log("오후");
+        }
+
+        if(hour < 5) {
+            console.log("Go Sleep...");
+        } else if (hour < 7) {
+            console.log("Wake Up!");
+        } else if (hour < 9) {
+            console.log("Go Walk!");
+        } else {
+            console.log("I don't know...");
+        }
+        
+        var array = [273, '문자열', true, function() {}, {}, [32, 103]];
+        console.log(array);
+        console.log(array[5][0] + ", " + array[5][1]);
+
+        var i = 0;
+        while(i < array.length) {
+            console.log("array[" + i + "] : " + array[i]);
+            i++;
+        }
+        array.forEach(element => {
+            console.log(element);
+        });
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
