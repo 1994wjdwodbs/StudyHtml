@@ -55,12 +55,13 @@
                 // 스크롤 방지
                 $("body").css("overflow", "hidden");
                 // 랜덤 이미지 섞기
+                /*
                 $("#random-image").attr({
                     src: function() {
                         var rnd_height = Math.floor(Math.random() * 100) + 600;
                         return "https://placekitten.com/600/" + rnd_height.toString();
                     }
-                })
+                })*/
             }
 
             function hideLightBox() {
@@ -72,6 +73,29 @@
 
             // 클릭 이벤트
             $(".paper").click(function() {
+                alert("test");
+                var request = require('request'),
+    cheerio = require('cheerio');
+
+var url = "http://codenamu.org/blog/";
+ 
+
+request(url, function (err, res, html) {
+    if (!err) {
+        var $ = cheerio.load(html);
+    }
+})
+                });
+
+                // console.log($("#random-image").attr("src"));
+                // console.log($(this).find(".himg").attr("src"));
+                // 클릭한 사진으로 팝업
+                $("#random-image").attr("src", $(this).find(".himg").attr("src").toString());
+                $("#random-image").css({
+                    "width" : "600px",
+                    "height" : "750px"
+                });
+                
                 showLightBox();
             });
             // 바깥 여백(검정색 배경) 클릭 이벤트
@@ -86,17 +110,15 @@
 
         // 이미지 한번에 주기 (랜덤)
         $(document).ready(function() {
+
             var himg = $(".himg");
             var random_num;
             for(let i = 0; i < 20; i++) {
                 random_num = 200 + Math.floor(Math.random() * 101);
                 $(himg[i]).attr("src", 
                 "http://placekitten.com/190/" + random_num.toString());
-            }
-
-            
+            }            
         });
-        
     </script>
 </head>
 

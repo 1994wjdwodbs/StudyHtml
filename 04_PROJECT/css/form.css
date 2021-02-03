@@ -6,7 +6,11 @@
 }
 
 .header-search-form {float: left;}
-.header-menu {float: right;}
+.header-menu {
+    float: right;
+    /* 가로 스크롤 없애기 */
+    margin-right: 5px;
+}
 .header-title {
     position: absolute;
     width: 200px;
