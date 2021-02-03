@@ -5,266 +5,99 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Interest</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <!-- 초기화 -->
-    <style>
-        * {
-            margin: 0px;
-            padding: 0px;
-            font-family: 'NanumGothic', sans-serif;
-        }
-
-        a {
-            text-decoration: none;
-        }
-
-        img {
-            border: 0px;
-        }
-
-        li {
-            list-style:none;
-        }
-
-        html {
-            background-color: #f7f5f5;
-        }
-    </style>
+    <link rel="stylesheet" href="css/init.css">
+    <link rel="stylesheet" href="css/form.css">
+    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/search.css">
+    <link rel="stylesheet" href="css/designes.css">
+    <link rel="stylesheet" href="css/section.css">
+    <link rel="stylesheet" href="css/lightbox.css">
     
-    <!-- 헤더 -->
-    <style>
-        #main-header {
-            height: 40px;
-            background-color: #faf7f7;
-            position: relative;
-        }
-
-        .header-search-form {float: left;}
-        .header-menu {float: right;}
-        .header-title {
-            position: absolute;
-            width: 200px;
-            height: 40px;
-            left: 50%; margin-left: -100px;
-
-            background-image: url('images/logo.png');
-            background-repeat: no-repeat;
-            text-indent: -1000px;
-        }
-    </style>
-    
-    <!-- (풀다운) 메뉴 -->
-    <style>
-        .outer-menu {
-            float: left;
-            width: 100px; height: 20px;
-            line-height: 20px;
-            padding: 10px 0;
-            position: relative;
-            text-align: center;
-
-            font-size: 13px;
-            font-weight: bold;
-            
-            z-index: 9999;
-        }
-        .outer-menu:hover {background-color: #e1dfdf;}
-        
-        .inner-menu {
-            display: none;
-            background: #FFFFFF;
-            margin-top: 10px;
-            width: 100%;
-            
-            border-top: 1px solid #cccaca;
-            box-shadow: 0 2px 4px rgba(34, 25, 25, 0.5);
-        }
-        .inner-menu a {
-            display: block;
-            padding: 5px 10px;
-            z-index: 5000;
-        }
-        .inner-menu a:hover {background: #e1dfdf;}
-    </style>
-    
-    <!-- 네비게이션 메뉴 -->
-    <style>
-        #main-navigation {
-            height: 30px;
-            background: #faf7f7;
-
-            border-top: 1px solid #cfcaca;
-            box-shadow: 1px 3px 3px rgba(34, 25, 25, 0.4);
-        }
-
-        #main-navigation > ul {
-            overflow: hidden;
-            text-align: center;
-        }
-
-        #main-navigation > ul > li {
-            display: inline;
-            padding: 0 5px;
-            line-height: 30px;
-            font-size: 13px;
-            color: #524d4d;
-
-            text-shadow: 0 1px 1px white;
-        }
-
-        #main-navigation > ul > li:hover {
-            background: #e1dfdf;
-            border-radius: 2px;
-        }
-    </style>
-    
-    <!-- 검색 양식 -->
-    <style>
-        .header-search-form {
-            padding: 7px;
-        }
-
-        .input-search {
-            display: block;
-            float: left;
-            background-color: #ffffff;
-            
-            border: 1px solid #cccccc;
-            border-radius: 15px 0 0 15px;
-            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.5);
-
-            width: 120px; height: 26px;
-            padding: 0 0 0 10px;
-            font-size: 12px;
-            color: #555555;
-        }
-        .input-search:focus {
-            border-color: rgba(82, 168, 236, 0.8);
-            outline: 0;
-            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.5);
-        }
-        .input-search-submit {
-            display: block;
-            float: left;
-            width: 50px; height: 26px;
-
-            border: 1px solid #cccccc;
-            border-radius: 0 15px 15px 0;
-            
-            margin-left: -1px;
-            /* vertical-align: top; */
-        }
-        /* 검색 버튼 포커스(클릭) 외곽선 */
-        .input-search-submit:focus {
-            outline: none;
-            box-shadow: inset 0 0 0 1px rgba(82, 168, 236, 0.8);
-        }
-    </style>
-    
-    <!-- 종이 -->
-    <style>
-        .paper {
-            width: 190px;
-            margin-top: 10px;
-            padding: 15px 15px 0;
-            font-size: 11px;
-            background: #ffffff;
-            box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
-        }
-        .paper-description {
-            margin: 10px 0;
-        }
-        .paper-content {
-            margin: 10px -15px 0 -15px;
-            padding: 10px 15px;
-            background: #f2f0f0;
-            overflow: hidden;
-        }
-        .paper-link {
-            display: block;
-            float: left;
-        }
-        .paper-text {
-            float: left;
-            width: 150px;
-            margin-left: 10px;
-        }
-    </style>
-    
-    <!-- 섹션 스타일 -->
-    <style>
-        /* 미디어쿼리 지원하지 않는 웹 브라우저 */
-        #main-section {
-            width: 920px;
-            margin: 0 auto; /* 정중앙 */
-        }
-
-
-        /* 미디어쿼리 지원하는 웹 브라우저 */
-        /* 세 줄 */
-        @media (max-width: 919px) {
-            #main-section {width: 690px;}
-        }
-
-        /* 네 줄 */
-        @media (min-width: 920px) and (max-width: 1149px) {
-            #main-section {width: 920px;}
-        }
-
-        /* 다섯 줄 */
-        @media (min-width: 1150px) and (max-width: 13799px) {
-            #main-section {width: 1150px;}
-        }
-
-        /* 여섯 줄 */
-        @media (min-width: 1380px) {
-            #main-section {width: 1380px;}
-        }
-    </style>
-    
-    <!-- 라이트박스 -->
-    <style>
-        #darken-background {
-            position: absolute;
-            top: 0; left: 0; right: 0; height: 100%;
-
-            display: none;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 10000;
-
-            overflow-y: scroll;
-        }
-
-        #lightbox {
-            width: 700px;
-            margin: 20px auto;
-            padding: 15px;
-
-            border: 1px solid #333333;
-            border-radius: 5px;
-            background: white;
-            box-shadow: 0 5px 5px rgba(34, 25, 25, 0.4);
-            text-align: center;
-        }
-
-        .user-information {
-            overflow: hidden;
-            text-align: left;
-        }
-        .user-information-image {
-            float: left;
-            width: 70px;
-        }
-        .user-information-text {
-            float: right;
-            width: 620px;
-        }
-        .lightbox-splitter {margin: 10px 0;}
-    </style>
-    
-    <style></style>
     <script src="js/jquery-3.5.1.min.js"></script>
     <script src="js/masonry.pkgd.min.js"></script>
     <script src="js/imagesloaded.pkgd.min.js"></script>
+
+    <script>
+        // 풀다운 메뉴 (풀다운 메뉴 적용)
+        $(document).ready(function() { // 로드 이벤트
+            $(".outer-menu").hover
+            (function() {
+                // $(".inner-menu").css("display", "block");
+                // 마우스 이벤트가 발생한 특정 inner-menu 클래스 선택
+                $(this).find(".inner-menu").css("display", "block");
+                
+            }, 
+            function() {
+                $(this).find(".inner-menu").css("display", "none");
+            });
+        });
+
+        // 페이지 (그리드 레이아웃 적용)
+        $(document).ready(function() {
+            //이미지 로드 확인 후 Masonry 플러그인 적용
+            $("#main-section").imagesLoaded(function() {
+                $("#main-section").masonry({
+                    itemSelector: ".paper",
+                    columnWidth: 230,
+                    isAnimated: true
+                });
+            });
+
+            
+        });
+
+        // 라이트박스
+        $(document).ready(function() {
+            function showLightBox() {
+                // 라이트박스 show()
+                $("#darken-background").show();
+                $("#darken-background").css("top", $(window).scrollTop());
+                // 스크롤 방지
+                $("body").css("overflow", "hidden");
+                // 랜덤 이미지 섞기
+                $("#random-image").attr({
+                    src: function() {
+                        var rnd_height = Math.floor(Math.random() * 100) + 600;
+                        return "https://placekitten.com/600/" + rnd_height.toString();
+                    }
+                })
+            }
+
+            function hideLightBox() {
+                // 라이트박스 hide()
+                $("#darken-background").hide();
+                // 스크롤 정상 작동
+                $("body").css("overflow", "auto");
+            }
+
+            // 클릭 이벤트
+            $(".paper").click(function() {
+                showLightBox();
+            });
+            // 바깥 여백(검정색 배경) 클릭 이벤트
+            $("#darken-background").click(function() {
+                hideLightBox();
+            });
+            // 라이트박스 제거 이벤트 보조
+            $("#lightbox").click(function (event) {
+                event.stopPropagation();
+            });
+        });
+
+        // 이미지 한번에 주기 (랜덤)
+        $(document).ready(function() {
+            var himg = $(".himg");
+            var random_num;
+            for(let i = 0; i < 20; i++) {
+                random_num = 200 + Math.floor(Math.random() * 101);
+                $(himg[i]).attr("src", 
+                "http://placekitten.com/190/" + random_num.toString());
+            }
+
+            
+        });
+        
+    </script>
 </head>
 
 <body>
@@ -328,7 +161,7 @@
         <div class="paper">
 
             <div class="paper-holder">
-                <a><img width="190" src="https://placehold.it/190x306"></a>
+                <a><img class="himg" width="190" src="http://placekitten.com/190/328"></a>
             </div>
             <p class="paper-description">
                 Lorem ipsum dolor sit amet
@@ -336,7 +169,24 @@
 
             <div class="paper-content">
                 <a class="paper-link" href="#">
-                    <img width="190" src="https://placehold.it/190x100">
+                    <img src="http://placekitten.com/30/30">
+                </a>
+                <p class="paper-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem, sequi blanditiis quod aliquid maiores dicta explicabo doloribus iste reiciendis quaerat voluptate, aspernatur sint beatae delectus tempore quo est ipsum eos!</p>
+            </div>
+
+        </div>
+        <div class="paper">
+
+            <div class="paper-holder">
+                <a><img class="himg" width="190" src="http://placekitten.com/190/290"></a>
+            </div>
+            <p class="paper-description">
+                Lorem ipsum dolor sit amet
+            </p>
+
+            <div class="paper-content">
+                <a class="paper-link" href="#">
+                    <img src="http://placekitten.com/30/30">
                 </a>
                 <p class="paper-text">Lorem ipsum dolor sit amet!</p>
             </div>
@@ -345,7 +195,7 @@
         <div class="paper">
 
             <div class="paper-holder">
-                <a><img width="190" src="https://placehold.it/190x306"></a>
+                <a><img class="himg" width="190" src="http://placekitten.com/190/200"></a>
             </div>
             <p class="paper-description">
                 Lorem ipsum dolor sit amet
@@ -353,7 +203,24 @@
 
             <div class="paper-content">
                 <a class="paper-link" href="#">
-                    <img width="190" src="https://placehold.it/190x100">
+                    <img src="http://placekitten.com/30/30">
+                </a>
+                <p class="paper-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem, sequi blanditiis quod aliquid maiores dicta explicabo doloribus iste reiciendis quaerat voluptate, aspernatur sint beatae delectus tempore quo est ipsum eos!</p>
+            </div>
+
+        </div>
+        <div class="paper">
+
+            <div class="paper-holder">
+                <a><img class="himg" width="190" src="http://placekitten.com/190/215"></a>
+            </div>
+            <p class="paper-description">
+                Lorem ipsum dolor sit amet
+            </p>
+
+            <div class="paper-content">
+                <a class="paper-link" href="#">
+                    <img src="http://placekitten.com/30/30">
                 </a>
                 <p class="paper-text">Lorem ipsum dolor sit amet!</p>
             </div>
@@ -362,7 +229,7 @@
         <div class="paper">
 
             <div class="paper-holder">
-                <a><img width="190" src="https://placehold.it/190x306"></a>
+                <a><img class="himg" width="190" src="http://placekitten.com/190/256"></a>
             </div>
             <p class="paper-description">
                 Lorem ipsum dolor sit amet
@@ -370,7 +237,24 @@
 
             <div class="paper-content">
                 <a class="paper-link" href="#">
-                    <img width="190" src="https://placehold.it/190x100">
+                    <img src="http://placekitten.com/30/30">
+                </a>
+                <p class="paper-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem, sequi blanditiis quod aliquid maiores dicta explicabo doloribus iste reiciendis quaerat voluptate, aspernatur sint beatae delectus tempore quo est ipsum eos!</p>
+            </div>
+
+        </div>
+        <div class="paper">
+
+            <div class="paper-holder">
+                <a><img class="himg" width="190" src="http://placekitten.com/190/182"></a>
+            </div>
+            <p class="paper-description">
+                Lorem ipsum dolor sit amet
+            </p>
+
+            <div class="paper-content">
+                <a class="paper-link" href="#">
+                    <img src="http://placekitten.com/30/30">
                 </a>
                 <p class="paper-text">Lorem ipsum dolor sit amet!</p>
             </div>
@@ -379,7 +263,7 @@
         <div class="paper">
 
             <div class="paper-holder">
-                <a><img width="190" src="https://placehold.it/190x306"></a>
+                <a><img class="himg" width="190" src="http://placekitten.com/190/176"></a>
             </div>
             <p class="paper-description">
                 Lorem ipsum dolor sit amet
@@ -387,7 +271,24 @@
 
             <div class="paper-content">
                 <a class="paper-link" href="#">
-                    <img width="190" src="https://placehold.it/190x100">
+                    <img src="http://placekitten.com/30/30">
+                </a>
+                <p class="paper-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem, sequi blanditiis quod aliquid maiores dicta explicabo doloribus iste reiciendis quaerat voluptate, aspernatur sint beatae delectus tempore quo est ipsum eos!</p>
+            </div>
+
+        </div>
+        <div class="paper">
+
+            <div class="paper-holder">
+                <a><img class="himg" width="190" src="http://placekitten.com/190/316"></a>
+            </div>
+            <p class="paper-description">
+                Lorem ipsum dolor sit amet
+            </p>
+
+            <div class="paper-content">
+                <a class="paper-link" href="#">
+                    <img src="http://placekitten.com/30/30">
                 </a>
                 <p class="paper-text">Lorem ipsum dolor sit amet!</p>
             </div>
@@ -396,7 +297,7 @@
         <div class="paper">
 
             <div class="paper-holder">
-                <a><img width="190" src="https://placehold.it/190x306"></a>
+                <a><img class="himg" width="190" src="http://placekitten.com/190/186"></a>
             </div>
             <p class="paper-description">
                 Lorem ipsum dolor sit amet
@@ -404,7 +305,24 @@
 
             <div class="paper-content">
                 <a class="paper-link" href="#">
-                    <img width="190" src="https://placehold.it/190x100">
+                    <img src="http://placekitten.com/30/30">
+                </a>
+                <p class="paper-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem, sequi blanditiis quod aliquid maiores dicta explicabo doloribus iste reiciendis quaerat voluptate, aspernatur sint beatae delectus tempore quo est ipsum eos!</p>
+            </div>
+
+        </div>
+        <div class="paper">
+
+            <div class="paper-holder">
+                <a><img class="himg" width="190" src="http://placekitten.com/190/249"></a>
+            </div>
+            <p class="paper-description">
+                Lorem ipsum dolor sit amet
+            </p>
+
+            <div class="paper-content">
+                <a class="paper-link" href="#">
+                    <img src="http://placekitten.com/30/30">
                 </a>
                 <p class="paper-text">Lorem ipsum dolor sit amet!</p>
             </div>
@@ -413,7 +331,7 @@
         <div class="paper">
 
             <div class="paper-holder">
-                <a><img width="190" src="https://placehold.it/190x306"></a>
+                <a><img class="himg" width="190" src="http://placekitten.com/190/324"></a>
             </div>
             <p class="paper-description">
                 Lorem ipsum dolor sit amet
@@ -421,7 +339,24 @@
 
             <div class="paper-content">
                 <a class="paper-link" href="#">
-                    <img width="190" src="https://placehold.it/190x100">
+                    <img src="http://placekitten.com/30/30">
+                </a>
+                <p class="paper-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem, sequi blanditiis quod aliquid maiores dicta explicabo doloribus iste reiciendis quaerat voluptate, aspernatur sint beatae delectus tempore quo est ipsum eos!</p>
+            </div>
+
+        </div>
+        <div class="paper">
+
+            <div class="paper-holder">
+                <a><img class="himg" width="190" src="http://placekitten.com/190/305"></a>
+            </div>
+            <p class="paper-description">
+                Lorem ipsum dolor sit amet
+            </p>
+
+            <div class="paper-content">
+                <a class="paper-link" href="#">
+                    <img src="http://placekitten.com/30/30">
                 </a>
                 <p class="paper-text">Lorem ipsum dolor sit amet!</p>
             </div>
@@ -430,7 +365,7 @@
         <div class="paper">
 
             <div class="paper-holder">
-                <a><img width="190" src="https://placehold.it/190x306"></a>
+                <a><img class="himg" width="190" src="http://placekitten.com/190/180"></a>
             </div>
             <p class="paper-description">
                 Lorem ipsum dolor sit amet
@@ -438,7 +373,24 @@
 
             <div class="paper-content">
                 <a class="paper-link" href="#">
-                    <img width="190" src="https://placehold.it/190x100">
+                    <img src="http://placekitten.com/30/30">
+                </a>
+                <p class="paper-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem, sequi blanditiis quod aliquid maiores dicta explicabo doloribus iste reiciendis quaerat voluptate, aspernatur sint beatae delectus tempore quo est ipsum eos!</p>
+            </div>
+
+        </div>
+        <div class="paper">
+
+            <div class="paper-holder">
+                <a><img class="himg" width="190" src="http://placekitten.com/190/273"></a>
+            </div>
+            <p class="paper-description">
+                Lorem ipsum dolor sit amet
+            </p>
+
+            <div class="paper-content">
+                <a class="paper-link" href="#">
+                    <img src="http://placekitten.com/30/30">
                 </a>
                 <p class="paper-text">Lorem ipsum dolor sit amet!</p>
             </div>
@@ -447,7 +399,7 @@
         <div class="paper">
 
             <div class="paper-holder">
-                <a><img width="190" src="https://placehold.it/190x306"></a>
+                <a><img class="himg" width="190" src="http://placekitten.com/190/188"></a>
             </div>
             <p class="paper-description">
                 Lorem ipsum dolor sit amet
@@ -455,7 +407,24 @@
 
             <div class="paper-content">
                 <a class="paper-link" href="#">
-                    <img width="190" src="https://placehold.it/190x100">
+                    <img src="http://placekitten.com/30/30">
+                </a>
+                <p class="paper-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem, sequi blanditiis quod aliquid maiores dicta explicabo doloribus iste reiciendis quaerat voluptate, aspernatur sint beatae delectus tempore quo est ipsum eos!</p>
+            </div>
+
+        </div>
+        <div class="paper">
+
+            <div class="paper-holder">
+                <a><img class="himg" width="190" src="http://placekitten.com/190/230"></a>
+            </div>
+            <p class="paper-description">
+                Lorem ipsum dolor sit amet
+            </p>
+
+            <div class="paper-content">
+                <a class="paper-link" href="#">
+                    <img src="http://placekitten.com/30/30">
                 </a>
                 <p class="paper-text">Lorem ipsum dolor sit amet!</p>
             </div>
@@ -464,7 +433,7 @@
         <div class="paper">
 
             <div class="paper-holder">
-                <a><img width="190" src="https://placehold.it/190x306"></a>
+                <a><img class="himg" width="190" src="http://placekitten.com/190/192"></a>
             </div>
             <p class="paper-description">
                 Lorem ipsum dolor sit amet
@@ -472,7 +441,24 @@
 
             <div class="paper-content">
                 <a class="paper-link" href="#">
-                    <img width="190" src="https://placehold.it/190x100">
+                    <img src="http://placekitten.com/30/30">
+                </a>
+                <p class="paper-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem, sequi blanditiis quod aliquid maiores dicta explicabo doloribus iste reiciendis quaerat voluptate, aspernatur sint beatae delectus tempore quo est ipsum eos!</p>
+            </div>
+
+        </div>
+        <div class="paper">
+
+            <div class="paper-holder">
+                <a><img class="himg" width="190" src="http://placekitten.com/190/317"></a>
+            </div>
+            <p class="paper-description">
+                Lorem ipsum dolor sit amet
+            </p>
+
+            <div class="paper-content">
+                <a class="paper-link" href="#">
+                    <img src="http://placekitten.com/30/30">
                 </a>
                 <p class="paper-text">Lorem ipsum dolor sit amet!</p>
             </div>
@@ -481,7 +467,7 @@
         <div class="paper">
 
             <div class="paper-holder">
-                <a><img width="190" src="https://placehold.it/190x306"></a>
+                <a><img class="himg" width="190" src="http://placekitten.com/190/326"></a>
             </div>
             <p class="paper-description">
                 Lorem ipsum dolor sit amet
@@ -489,16 +475,16 @@
 
             <div class="paper-content">
                 <a class="paper-link" href="#">
-                    <img width="190" src="https://placehold.it/190x100">
+                    <img src="http://placekitten.com/30/30">
                 </a>
-                <p class="paper-text">Lorem ipsum dolor sit amet!</p>
+                <p class="paper-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem, sequi blanditiis quod aliquid maiores dicta explicabo doloribus iste reiciendis quaerat voluptate, aspernatur sint beatae delectus tempore quo est ipsum eos!</p>
             </div>
 
         </div>
         <div class="paper">
 
             <div class="paper-holder">
-                <a><img width="190" src="https://placehold.it/190x306"></a>
+                <a><img class="himg" width="190" src="http://placekitten.com/190/258"></a>
             </div>
             <p class="paper-description">
                 Lorem ipsum dolor sit amet
@@ -506,160 +492,7 @@
 
             <div class="paper-content">
                 <a class="paper-link" href="#">
-                    <img width="190" src="https://placehold.it/190x100">
-                </a>
-                <p class="paper-text">Lorem ipsum dolor sit amet!</p>
-            </div>
-
-        </div>
-        <div class="paper">
-
-            <div class="paper-holder">
-                <a><img width="190" src="https://placehold.it/190x306"></a>
-            </div>
-            <p class="paper-description">
-                Lorem ipsum dolor sit amet
-            </p>
-
-            <div class="paper-content">
-                <a class="paper-link" href="#">
-                    <img width="190" src="https://placehold.it/190x100">
-                </a>
-                <p class="paper-text">Lorem ipsum dolor sit amet!</p>
-            </div>
-
-        </div>
-        <div class="paper">
-
-            <div class="paper-holder">
-                <a><img width="190" src="https://placehold.it/190x306"></a>
-            </div>
-            <p class="paper-description">
-                Lorem ipsum dolor sit amet
-            </p>
-
-            <div class="paper-content">
-                <a class="paper-link" href="#">
-                    <img width="190" src="https://placehold.it/190x100">
-                </a>
-                <p class="paper-text">Lorem ipsum dolor sit amet!</p>
-            </div>
-
-        </div>
-        <div class="paper">
-
-            <div class="paper-holder">
-                <a><img width="190" src="https://placehold.it/190x306"></a>
-            </div>
-            <p class="paper-description">
-                Lorem ipsum dolor sit amet
-            </p>
-
-            <div class="paper-content">
-                <a class="paper-link" href="#">
-                    <img width="190" src="https://placehold.it/190x100">
-                </a>
-                <p class="paper-text">Lorem ipsum dolor sit amet!</p>
-            </div>
-
-        </div>
-        <div class="paper">
-
-            <div class="paper-holder">
-                <a><img width="190" src="https://placehold.it/190x306"></a>
-            </div>
-            <p class="paper-description">
-                Lorem ipsum dolor sit amet
-            </p>
-
-            <div class="paper-content">
-                <a class="paper-link" href="#">
-                    <img width="190" src="https://placehold.it/190x100">
-                </a>
-                <p class="paper-text">Lorem ipsum dolor sit amet!</p>
-            </div>
-
-        </div>
-        <div class="paper">
-
-            <div class="paper-holder">
-                <a><img width="190" src="https://placehold.it/190x306"></a>
-            </div>
-            <p class="paper-description">
-                Lorem ipsum dolor sit amet
-            </p>
-
-            <div class="paper-content">
-                <a class="paper-link" href="#">
-                    <img width="190" src="https://placehold.it/190x100">
-                </a>
-                <p class="paper-text">Lorem ipsum dolor sit amet!</p>
-            </div>
-
-        </div>
-        <div class="paper">
-
-            <div class="paper-holder">
-                <a><img width="190" src="https://placehold.it/190x306"></a>
-            </div>
-            <p class="paper-description">
-                Lorem ipsum dolor sit amet
-            </p>
-
-            <div class="paper-content">
-                <a class="paper-link" href="#">
-                    <img width="190" src="https://placehold.it/190x100">
-                </a>
-                <p class="paper-text">Lorem ipsum dolor sit amet!</p>
-            </div>
-
-        </div>
-        <div class="paper">
-
-            <div class="paper-holder">
-                <a><img width="190" src="https://placehold.it/190x306"></a>
-            </div>
-            <p class="paper-description">
-                Lorem ipsum dolor sit amet
-            </p>
-
-            <div class="paper-content">
-                <a class="paper-link" href="#">
-                    <img width="190" src="https://placehold.it/190x100">
-                </a>
-                <p class="paper-text">Lorem ipsum dolor sit amet!</p>
-            </div>
-
-        </div>
-        <div class="paper">
-
-            <div class="paper-holder">
-                <a><img width="190" src="https://placehold.it/190x306"></a>
-            </div>
-            <p class="paper-description">
-                Lorem ipsum dolor sit amet
-            </p>
-
-            <div class="paper-content">
-                <a class="paper-link" href="#">
-                    <img width="190" src="https://placehold.it/190x100">
-                </a>
-                <p class="paper-text">Lorem ipsum dolor sit amet!</p>
-            </div>
-
-        </div>
-        <div class="paper">
-
-            <div class="paper-holder">
-                <a><img width="190" src="https://placehold.it/190x306"></a>
-            </div>
-            <p class="paper-description">
-                Lorem ipsum dolor sit amet
-            </p>
-
-            <div class="paper-content">
-                <a class="paper-link" href="#">
-                    <img width="190" src="https://placehold.it/190x100">
+                    <img src="http://placekitten.com/30/30">
                 </a>
                 <p class="paper-text">Lorem ipsum dolor sit amet!</p>
             </div>
@@ -673,7 +506,7 @@
             <div class="user-information">
 
                 <a class="user-information-image" href="#">
-                    <img src="https://placehold.it/70x70">
+                    <img src="http://placekitten.com/70/70">
                 </a>
                 
                 <div class="user-information-text">
@@ -685,7 +518,7 @@
             
             <hr class="lightbox-splitter">
 
-            <img src="https://placehold.it/600x750">
+            <img id="random-image" src="http://placekitten.com/600/750">
         </div>
     </div>
 

@@ -1,0 +1,28 @@
+
+/* 미디어쿼리 지원하지 않는 웹 브라우저 */
+#main-section {
+    width: 920px;
+    margin: 0 auto; /* 정중앙 */
+}
+
+
+/* 미디어쿼리 지원하는 웹 브라우저 */
+/* 세 줄 */
+@media (max-width: 919px) {
+    #main-section {width: 690px;}
+}
+
+/* 네 줄 */
+@media (min-width: 920px) and (max-width: 1149px) {
+    #main-section {width: 920px;}
+}
+
+/* 다섯 줄 */
+@media (min-width: 1150px) and (max-width: 13799px) {
+    #main-section {width: 1150px;}
+}
+
+/* 여섯 줄 */
+@media (min-width: 1380px) {
+    #main-section {width: 1380px;}
+}

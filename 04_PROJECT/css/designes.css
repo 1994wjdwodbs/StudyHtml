@@ -1,0 +1,36 @@
+.paper {
+    width: 190px;
+    margin-top: 10px;
+    padding: 15px 15px 0;
+    font-size: 11px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
+}
+.paper-description {
+    margin: 10px 0;
+}
+.paper-content {
+    margin: 10px -15px 0 -15px;
+    padding: 10px 15px;
+    background: #f2f0f0;
+    overflow: hidden;
+}
+.paper-link {
+    display: block;
+    float: left;
+}
+.paper-text {
+    float: left;
+    width: 150px;
+    margin-left: 10px;
+}
+
+.paper-holder img {
+    border-radius: 7px;
+}
+/* 자손 선택자를 이용하여 한번에 이미지를 주려고 시도
+그러나 전부 첫번째 태그이기 때문에 소용없음...
+#main-section img:nth-child(2n) { 
+    content: url("images/logo.png");    
+}*/
