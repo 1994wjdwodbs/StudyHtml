@@ -71,21 +71,8 @@
                 $("body").css("overflow", "auto");
             }
 
-            // 클릭 이벤트
+            // 클릭 이벤트 
             $(".paper").click(function() {
-                alert("test");
-                var request = require('request'),
-    cheerio = require('cheerio');
-
-var url = "http://codenamu.org/blog/";
- 
-
-request(url, function (err, res, html) {
-    if (!err) {
-        var $ = cheerio.load(html);
-    }
-})
-                });
 
                 // console.log($("#random-image").attr("src"));
                 // console.log($(this).find(".himg").attr("src"));
@@ -107,6 +94,16 @@ request(url, function (err, res, html) {
                 event.stopPropagation();
             });
         });
+        
+        // 프로젝트 개량 : 내 폴더 이미지 갤러리 (Jallery)
+        // submit 클릭 이벤트 읽어오기
+        // images 목록 불러오기 및 필터링
+        // image와 제목 따로 따로 붙이기
+        // jpg, png 아이콘 붙이기
+        // 팝업 시 프린트, 링크 복사 아이콘 추가하기
+        // ...
+        // Jallery 타이틀 만들기
+        // 다른사람 레이아웃, 색상 영감 받고 적용하기
 
         // 이미지 한번에 주기 (랜덤)
         $(document).ready(function() {
