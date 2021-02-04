@@ -96,8 +96,43 @@
         });
         
         // 프로젝트 개량 : 내 폴더 이미지 갤러리 (Jallery)
-        // submit 클릭 이벤트 읽어오기
-        // images 목록 불러오기 및 필터링
+        
+        $(document).ready(function() {
+            // submit 클릭 이벤트 읽어오기
+
+            
+            // images 목록 불러오기 및 필터링
+            // Check for the various File API support.
+            if (window.File && window.FileReader && window.FileList && window.Blob) {
+            // Great success! All the File APIs are supported.
+            console.log("ok");
+            } else {
+            alert('The File APIs are not fully supported in this browser.');
+            }
+
+            $("#file-select").click(function() { 
+                console.log("test");
+                
+            });
+            $("#file-select").change(function() {
+                
+                var fileInput = $("#file-select");
+                console.log(fileInput.val());
+                var files = fileInput[0].files;
+                // cache files.length
+                var fl = files.length;
+                var array = [];
+
+                for(let i = 0; i < fl; i++) {
+                    // localize file var in the loop
+                    var file = files[i];
+                    array[i] = file.name;
+                    console.log(array[i]);
+                }
+            });
+
+        });
+
         // image와 제목 따로 따로 붙이기
         // jpg, png 아이콘 붙이기
         // 팝업 시 프린트, 링크 복사 아이콘 추가하기
@@ -107,7 +142,7 @@
 
         // 이미지 한번에 주기 (랜덤)
         $(document).ready(function() {
-
+            
             var himg = $(".himg");
             var random_num;
             for(let i = 0; i < 20; i++) {
@@ -125,7 +160,8 @@
         <div class="header-search-form">
             <form>
                 <input type="search" class="input-search">
-                <input type="submit" class="input-search-submit" value="검색">
+                <input type="file" class="input-search-submit" value="~.AndExtension" 
+                id="file-select" webkitdirectory multiple>
             </form>
         </div>
 
