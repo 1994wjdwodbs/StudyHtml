@@ -24,6 +24,48 @@
         var files;
         var array, array2;
         var init_flag = false;
+        
+        $(document).ready(function() {
+            // Initialising the canvas// Initialising the canvas
+var canvas = document.querySelector('canvas'),
+    ctx = canvas.getContext('2d');
+
+// Setting the width and height of the canvas
+canvas.width = $(document).width();
+canvas.height = $(document).height();
+
+// Setting up the letters
+var letters = 'ABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZ';
+letters = letters.split('');
+
+// Setting up the columns
+var fontSize = 10,
+    columns = canvas.width / fontSize;
+
+// Setting up the drops
+var drops = [];
+for (var i = 0; i < columns; i++) {
+  drops[i] = 1;
+}
+
+// Setting up the draw function
+function draw() {
+  ctx.fillStyle = 'rgba(0, 0, 0, .1)';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  for (var i = 0; i < drops.length; i++) {
+    var text = letters[Math.floor(Math.random() * letters.length)];
+    ctx.fillStyle = '#0f0';
+    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+    drops[i]++;
+    if (drops[i] * fontSize > canvas.height && Math.random() > .95) {
+      drops[i] = 0;
+    }
+  }
+}
+
+// Loop the animation
+setInterval(draw, 33);
+        });
 
         // 함수 (showLightBox(), hideLightBox())
         function showLightBox() {
@@ -112,11 +154,8 @@
                 $("#random-image").attr("src", $(this).find(".himg").attr("src").toString());
 
                 //라이트박스 크기 조절
-                $("#lightbox").attr("width", $(window).width()/2);
+                $("#lightbox").attr("width", $(window).width()*(3/4));
                 $("#lightbox").attr("height", $(window).height()*(3/4));
-
-                console.log($("#lightbox").attr("width"));
-                console.log($("#lightbox").attr("height"));
 
                 // 라이트박스 내 이미지 크기 조절
                 $("#random-image").css({
@@ -178,28 +217,32 @@
                         j++;
                     }
                 }
+                
                 // alert($('input.input-search').val());
                 
                 // 자동완성 기능
                 console.log(array);
                 $('input.input-search').autocomplete({source: array});
                 
+                // 새로 만든 div 요소의 이벤트 위임
                 $(document).on("click", ".paper", function() {
                     $("#random-image").attr("src", $(this).find(".himg").attr("src").toString());
 
                     //라이트박스 크기 조절
-                    $("#lightbox").attr("width", $(window).width()/2);
-                    $("#lightbox").attr("height", $(window).height()*(3/4));
+                    $("#lightbox").css({
+                        "width":$(window).width()*(3/4),
+                        "height":$(window).height()*(3/4)
+                    });
 
                     console.log($("#lightbox").attr("width"));
                     console.log($("#lightbox").attr("height"));
 
                     // 라이트박스 내 이미지 크기 조절
                     $("#random-image").css({
-                        "width":$(window).width()/3,
-                        "height":$(window).height()*(2/3)
+                        "width":$(window).width()*(3/4),
+                        "height":$(window).height()*(3/4) - 10*2 -70
                     });
-                    
+                    console.log($(".user-information-image").height());
                     showLightBox();
                 });
 
@@ -253,7 +296,7 @@
                     $(".paper").css("visibility","visible");
                     $(".paper").hide();
                     $(".paper").show("slow");
-                }, (array.length * 50)); // masonry는 시간이 걸리기 때문에, 사진 당 50ms 씩 딜레이를 줌
+                    }, (array.length * 50)); // masonry는 시간이 걸리기 때문에, 사진 당 50ms 씩 딜레이를 줌
                 });
                 }, 500);
             });
@@ -290,6 +333,7 @@
 </head>
 
 <body>
+    <canvas></canvas>
     <header id="main-header">
 
         <div class="ui-widget header-search-form">
