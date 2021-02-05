@@ -20,6 +20,47 @@
     <script src="js/jquery.autocomplete.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script>
+        // 전역 변수
+        var files;
+        var array, array2;
+        var init_flag = false;
+
+        // 함수 (showLightBox(), hideLightBox())
+        function showLightBox() {
+            // console.log($(document).scrollTop());
+            $("#lightbox").css("top", $(document).scrollTop());
+
+            // 라이트박스 보여주는 애니메이션
+            $("#darken-background").css({display:"block", "top":"0px"}).animate({
+                width:$(document).width(),
+                height:$(document).height()
+            }, 500);
+            // 라이트박스 설정
+            
+            // $("#darken-background").css("top", $(window).scrollTop());
+            // 스크롤 방지
+            // $("body").css("overflow", "hidden");
+            
+            // 랜덤 이미지 섞기
+            /*
+            $("#random-image").attr({
+                src: function() {
+                    var rnd_height = Math.floor(Math.random() * 100) + 600;
+                    return "https://placekitten.com/600/" + rnd_height.toString();
+                }
+            })*/
+        }
+        function hideLightBox() {
+            // 라이트박스 숨기는 애니메이션
+            $("#darken-background").animate({
+                height:"0%"
+            }, 500);
+            
+            // 스크롤 정상 작동
+            // $("body").css("overflow", "auto");
+        }
+
+
         // 풀다운 메뉴 (풀다운 메뉴 적용)
         $(document).ready(function() { // 로드 이벤트
             $(".outer-menu").hover
@@ -37,69 +78,32 @@
         // 페이지 (그리드 레이아웃 적용)
         $(document).ready(function() {
             //이미지 로드 확인 후 Masonry 플러그인 적용
-            $("#main-section").imagesLoaded(function() {
+            // $("#main-section").imagesLoaded(function() {
 
-
-                $("#main-section").masonry({
-                    itemSelector: ".paper",
-                    columnWidth: 230,
-                    isAnimated: true
-                });
-            });
-
+            //         $("#main-section").masonry({
+            //             itemSelector: ".paper",
+            //             columnWidth: 230,
+            //             isAnimated: true
+            //         });
+            // });
            
         });
 
-        // 라이트박스
         $(document).ready(function() {
-            function showLightBox() {
-                // console.log($(document).scrollTop());
-                $("#lightbox").css("top", $(document).scrollTop());
-
-                // 라이트박스 보여주는 애니메이션
-                $("#darken-background").css({display:"block", "top":"0px"}).animate({
-                    width:$(document).width(),
-                    height:$(document).height()
-                }, 500);
-                // 라이트박스 설정
-                
-                // $("#darken-background").css("top", $(window).scrollTop());
-                // 스크롤 방지
-                // $("body").css("overflow", "hidden");
-                
-                // 랜덤 이미지 섞기
-                /*
-                $("#random-image").attr({
-                    src: function() {
-                        var rnd_height = Math.floor(Math.random() * 100) + 600;
-                        return "https://placekitten.com/600/" + rnd_height.toString();
-                    }
-                })*/
-            }
-
-            function hideLightBox() {
-                // 라이트박스 숨기는 애니메이션
-                $("#darken-background").animate({
-                    height:"0%"
-				}, 500);
-                
-                // 스크롤 정상 작동
-                // $("body").css("overflow", "auto");
-            }
 
             // 클릭 이벤트 
             $(".paper").click(function() {
 
                 // 일부 보이기 (테스트)
-                var papers =$(".paper");
-                for(let i = 0; i < 10; i++)
-                    $(papers[i]).show();
+                // var papers =$(".paper");
+                // for(let i = 0; i < 10; i++)
+                //     $(papers[i]).show();
 
-                $("#main-section").masonry({
-                    itemSelector: ".paper",
-                    columnWidth: 230,
-                    isAnimated: true
-                });
+                // $("#main-section").masonry({
+                //     itemSelector: ".paper",
+                //     columnWidth: 230,
+                //     isAnimated: true
+                // });
 
                 // console.log($("#random-image").attr("src"));
                 // console.log($(this).find(".himg").attr("src"));
@@ -109,15 +113,15 @@
 
                 //라이트박스 크기 조절
                 $("#lightbox").attr("width", $(window).width()/2);
-                $("#lightbox").attr("height", $(window).height()/2);
+                $("#lightbox").attr("height", $(window).height()*(3/4));
 
                 console.log($("#lightbox").attr("width"));
                 console.log($("#lightbox").attr("height"));
 
                 // 라이트박스 내 이미지 크기 조절
                 $("#random-image").css({
-                    "width":$(window).width()/4,
-                    "height":$(window).height()/4
+                    "width":$(window).width()/3,
+                    "height":$(window).height()*(2/3)
                 });
                 
                 showLightBox();
@@ -129,17 +133,14 @@
             });
             // 라이트박스 제거 이벤트 보조
             $("#lightbox").click(function (event) {
-                event.stopPropagation();
+                //event.stopPropagation();
             });
         });
         
         // 프로젝트 개량 : 내 폴더 이미지 갤러리 (Jallery)
         
         $(document).ready(function() {
-            // submit 클릭 이벤트 읽어오기
 
-            
-            // images 목록 불러오기 및 필터링
             // Check for the various File API support.
             // if (window.File && window.FileReader && window.FileList && window.Blob) {
             // Great success! All the File APIs are supported.
@@ -149,37 +150,112 @@
             // }
 
             $("#file-select").click(function() { 
-                console.log("test");
                 
             });
             $("#file-select").change(function() {
                 
+                $("section").fadeOut(500);
+                setTimeout(() => {
+                $("section").fadeIn();
                 var fileInput = $("#file-select");
-                var files = fileInput[0].files;
-               //  console.log(files);
-                var array = [];
+                files = fileInput[0].files;
+                
+                // 전역변수 array 초기화(재사용)
+                array = [];
+                array2 = [];
+                $("section").empty();
 
-                for(let i = 0; i < files.length; i++) {
-                    // localize file var in the loop
-                    array[i] = files[i].webkitRelativePath;
-                    
-                    console.log(array[i]);
+                for(let i = 0, j = 0; i < files.length; i++) {
+
+                    // jpg, png, gif 파일만 받아넣기!
+                    if(files[i].webkitRelativePath.includes("jpg") || 
+                    files[i].webkitRelativePath.includes("png") || files[i].webkitRelativePath.includes("gif")) {
+                        array[j] = files[i].webkitRelativePath;
+                        array2[j] = files[i].name;
+                        $("<div class=\"paper\"><div class=\"paper-holder\"><a><img class=\"himg\" width=\"190\" ></a></div><p class=\"paper-description\">Lorem ipsum dolor sit amet</p><div class=\"paper-content\"><a class=\"paper-link\" href=\"#\"><img src=\"http://placekitten.com/30/30\"></a><p class=\"paper-text\">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem, sequi blanditiis quod aliquid maiores dicta explicabo doloribus iste reiciendis quaerat voluptate, aspernatur sint beatae delectus tempore quo est ipsum eos!</p></div></div>").appendTo("section");
+                        $(".paper").css("visibility", "hidden");
+                        console.log(array[j]);
+                        j++;
+                    }
                 }
-                alert($('input.input-search').val());
+                // alert($('input.input-search').val());
+                
+                // 자동완성 기능
                 console.log(array);
                 $('input.input-search').autocomplete({source: array});
                 
-                // 일부 없애기
-                var papers =$(".paper");
-                for(let i = 0; i < 10; i++)
-                    $(papers[i]).hide();
+                $(document).on("click", ".paper", function() {
+                    $("#random-image").attr("src", $(this).find(".himg").attr("src").toString());
 
-                $("#main-section").masonry({
-                    itemSelector: ".paper",
-                    columnWidth: 230,
-                    isAnimated: true
+                    //라이트박스 크기 조절
+                    $("#lightbox").attr("width", $(window).width()/2);
+                    $("#lightbox").attr("height", $(window).height()*(3/4));
+
+                    console.log($("#lightbox").attr("width"));
+                    console.log($("#lightbox").attr("height"));
+
+                    // 라이트박스 내 이미지 크기 조절
+                    $("#random-image").css({
+                        "width":$(window).width()/3,
+                        "height":$(window).height()*(2/3)
+                    });
+                    
+                    showLightBox();
                 });
+
+                var papers =$(".paper");
                 
+                $("#main-section").imagesLoaded(function() {
+                    $("section").fadeIn(1000);
+                    if(init_flag) {
+                        $("#main-section").masonry('destroy');
+                        $("#main-section").removeData('masonry');
+                    } init_flag = true;
+
+                    for(let i = 0; i < $(".paper").length; i++) {
+                        
+                        $(papers[i]).find(".himg").attr("src", array[i]);
+                        $(papers[i]).find(".paper-text").html(array2[i]);
+                        // $(papers[i]).css("visibility","hidden");
+
+                        var random_num;
+                        for(let j = 0; j < $(".paper").length; j++) {
+                            random_num = 200 + Math.floor(Math.random() * 101);
+                            //$(himg[i]).attr("src", 
+                            //"http://placekitten.com/190/" + random_num.toString());
+
+                            var p_content =$(".paper-content");
+                            var colorR = Math.floor((Math.random() * 256));
+                            var colorG = Math.floor((Math.random() * 256));
+                            var colorB = Math.floor((Math.random() * 256));   
+                            $(p_content[j]).css("background-color", "rgb(" + colorR + "," + colorG + "," + colorB + ")");
+                        } 
+                        
+                        // $(papers[i]).hide();
+                        // $(papers[i]).show("slow");
+
+                    }
+                    // for(let i = 0; i < $(".paper").length; i++) {
+                    //     $(papers[i]).show("normal");
+                    // }
+
+                // $("#main-section").masonry({
+                //     itemSelector: ".paper",
+                //     columnWidth: 230,
+                //     isAnimated: true
+                // }); 
+                setTimeout(function() {
+                    $("#main-section").masonry({
+                        itemSelector: ".paper",
+                        columnWidth: 230,
+                        isAnimated: true
+                    });
+                    $(".paper").css("visibility","visible");
+                    $(".paper").hide();
+                    $(".paper").show("slow");
+                }, (array.length * 50)); // masonry는 시간이 걸리기 때문에, 사진 당 50ms 씩 딜레이를 줌
+                });
+                }, 500);
             });
 
         });
@@ -198,7 +274,7 @@
             
             var himg = $(".himg");
             var random_num;
-            for(let i = 0; i < 20; i++) {
+            for(let i = 0; i < $(".paper").length; i++) {
                 random_num = 200 + Math.floor(Math.random() * 101);
                 //$(himg[i]).attr("src", 
                 //"http://placekitten.com/190/" + random_num.toString());
@@ -272,7 +348,7 @@
 
     <section id="main-section">
         <!-- 페이퍼 시작 -->
-        <div class="paper">
+        <!-- <div class="paper">
 
             <div class="paper-holder">
                 <a><img class="himg" width="190" src="http://placekitten.com/190/328"></a>
@@ -288,330 +364,7 @@
                 <p class="paper-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem, sequi blanditiis quod aliquid maiores dicta explicabo doloribus iste reiciendis quaerat voluptate, aspernatur sint beatae delectus tempore quo est ipsum eos!</p>
             </div>
 
-        </div>
-        <div class="paper">
-
-            <div class="paper-holder">
-                <a><img class="himg" width="190" src="http://placekitten.com/190/290"></a>
-            </div>
-            <p class="paper-description">
-                Lorem ipsum dolor sit amet
-            </p>
-
-            <div class="paper-content">
-                <a class="paper-link" href="#">
-                    <img src="http://placekitten.com/30/30">
-                </a>
-                <p class="paper-text">Lorem ipsum dolor sit amet!</p>
-            </div>
-
-        </div>
-        <div class="paper">
-
-            <div class="paper-holder">
-                <a><img class="himg" width="190" src="http://placekitten.com/190/200"></a>
-            </div>
-            <p class="paper-description">
-                Lorem ipsum dolor sit amet
-            </p>
-
-            <div class="paper-content">
-                <a class="paper-link" href="#">
-                    <img src="http://placekitten.com/30/30">
-                </a>
-                <p class="paper-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem, sequi blanditiis quod aliquid maiores dicta explicabo doloribus iste reiciendis quaerat voluptate, aspernatur sint beatae delectus tempore quo est ipsum eos!</p>
-            </div>
-
-        </div>
-        <div class="paper">
-
-            <div class="paper-holder">
-                <a><img class="himg" width="190" src="http://placekitten.com/190/215"></a>
-            </div>
-            <p class="paper-description">
-                Lorem ipsum dolor sit amet
-            </p>
-
-            <div class="paper-content">
-                <a class="paper-link" href="#">
-                    <img src="http://placekitten.com/30/30">
-                </a>
-                <p class="paper-text">Lorem ipsum dolor sit amet!</p>
-            </div>
-
-        </div>
-        <div class="paper">
-
-            <div class="paper-holder">
-                <a><img class="himg" width="190" src="http://placekitten.com/190/256"></a>
-            </div>
-            <p class="paper-description">
-                Lorem ipsum dolor sit amet
-            </p>
-
-            <div class="paper-content">
-                <a class="paper-link" href="#">
-                    <img src="http://placekitten.com/30/30">
-                </a>
-                <p class="paper-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem, sequi blanditiis quod aliquid maiores dicta explicabo doloribus iste reiciendis quaerat voluptate, aspernatur sint beatae delectus tempore quo est ipsum eos!</p>
-            </div>
-
-        </div>
-        <div class="paper">
-
-            <div class="paper-holder">
-                <a><img class="himg" width="190" src="http://placekitten.com/190/182"></a>
-            </div>
-            <p class="paper-description">
-                Lorem ipsum dolor sit amet
-            </p>
-
-            <div class="paper-content">
-                <a class="paper-link" href="#">
-                    <img src="http://placekitten.com/30/30">
-                </a>
-                <p class="paper-text">Lorem ipsum dolor sit amet!</p>
-            </div>
-
-        </div>
-        <div class="paper">
-
-            <div class="paper-holder">
-                <a><img class="himg" width="190" src="http://placekitten.com/190/176"></a>
-            </div>
-            <p class="paper-description">
-                Lorem ipsum dolor sit amet
-            </p>
-
-            <div class="paper-content">
-                <a class="paper-link" href="#">
-                    <img src="http://placekitten.com/30/30">
-                </a>
-                <p class="paper-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem, sequi blanditiis quod aliquid maiores dicta explicabo doloribus iste reiciendis quaerat voluptate, aspernatur sint beatae delectus tempore quo est ipsum eos!</p>
-            </div>
-
-        </div>
-        <div class="paper">
-
-            <div class="paper-holder">
-                <a><img class="himg" width="190" src="http://placekitten.com/190/316"></a>
-            </div>
-            <p class="paper-description">
-                Lorem ipsum dolor sit amet
-            </p>
-
-            <div class="paper-content">
-                <a class="paper-link" href="#">
-                    <img src="http://placekitten.com/30/30">
-                </a>
-                <p class="paper-text">Lorem ipsum dolor sit amet!</p>
-            </div>
-
-        </div>
-        <div class="paper">
-
-            <div class="paper-holder">
-                <a><img class="himg" width="190" src="http://placekitten.com/190/186"></a>
-            </div>
-            <p class="paper-description">
-                Lorem ipsum dolor sit amet
-            </p>
-
-            <div class="paper-content">
-                <a class="paper-link" href="#">
-                    <img src="http://placekitten.com/30/30">
-                </a>
-                <p class="paper-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem, sequi blanditiis quod aliquid maiores dicta explicabo doloribus iste reiciendis quaerat voluptate, aspernatur sint beatae delectus tempore quo est ipsum eos!</p>
-            </div>
-
-        </div>
-        <div class="paper">
-
-            <div class="paper-holder">
-                <a><img class="himg" width="190" src="http://placekitten.com/190/249"></a>
-            </div>
-            <p class="paper-description">
-                Lorem ipsum dolor sit amet
-            </p>
-
-            <div class="paper-content">
-                <a class="paper-link" href="#">
-                    <img src="http://placekitten.com/30/30">
-                </a>
-                <p class="paper-text">Lorem ipsum dolor sit amet!</p>
-            </div>
-
-        </div>
-        <div class="paper">
-
-            <div class="paper-holder">
-                <a><img class="himg" width="190" src="http://placekitten.com/190/324"></a>
-            </div>
-            <p class="paper-description">
-                Lorem ipsum dolor sit amet
-            </p>
-
-            <div class="paper-content">
-                <a class="paper-link" href="#">
-                    <img src="http://placekitten.com/30/30">
-                </a>
-                <p class="paper-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem, sequi blanditiis quod aliquid maiores dicta explicabo doloribus iste reiciendis quaerat voluptate, aspernatur sint beatae delectus tempore quo est ipsum eos!</p>
-            </div>
-
-        </div>
-        <div class="paper">
-
-            <div class="paper-holder">
-                <a><img class="himg" width="190" src="http://placekitten.com/190/305"></a>
-            </div>
-            <p class="paper-description">
-                Lorem ipsum dolor sit amet
-            </p>
-
-            <div class="paper-content">
-                <a class="paper-link" href="#">
-                    <img src="http://placekitten.com/30/30">
-                </a>
-                <p class="paper-text">Lorem ipsum dolor sit amet!</p>
-            </div>
-
-        </div>
-        <div class="paper">
-
-            <div class="paper-holder">
-                <a><img class="himg" width="190" src="http://placekitten.com/190/180"></a>
-            </div>
-            <p class="paper-description">
-                Lorem ipsum dolor sit amet
-            </p>
-
-            <div class="paper-content">
-                <a class="paper-link" href="#">
-                    <img src="http://placekitten.com/30/30">
-                </a>
-                <p class="paper-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem, sequi blanditiis quod aliquid maiores dicta explicabo doloribus iste reiciendis quaerat voluptate, aspernatur sint beatae delectus tempore quo est ipsum eos!</p>
-            </div>
-
-        </div>
-        <div class="paper">
-
-            <div class="paper-holder">
-                <a><img class="himg" width="190" src="http://placekitten.com/190/273"></a>
-            </div>
-            <p class="paper-description">
-                Lorem ipsum dolor sit amet
-            </p>
-
-            <div class="paper-content">
-                <a class="paper-link" href="#">
-                    <img src="http://placekitten.com/30/30">
-                </a>
-                <p class="paper-text">Lorem ipsum dolor sit amet!</p>
-            </div>
-
-        </div>
-        <div class="paper">
-
-            <div class="paper-holder">
-                <a><img class="himg" width="190" src="http://placekitten.com/190/188"></a>
-            </div>
-            <p class="paper-description">
-                Lorem ipsum dolor sit amet
-            </p>
-
-            <div class="paper-content">
-                <a class="paper-link" href="#">
-                    <img src="http://placekitten.com/30/30">
-                </a>
-                <p class="paper-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem, sequi blanditiis quod aliquid maiores dicta explicabo doloribus iste reiciendis quaerat voluptate, aspernatur sint beatae delectus tempore quo est ipsum eos!</p>
-            </div>
-
-        </div>
-        <div class="paper">
-
-            <div class="paper-holder">
-                <a><img class="himg" width="190" src="http://placekitten.com/190/230"></a>
-            </div>
-            <p class="paper-description">
-                Lorem ipsum dolor sit amet
-            </p>
-
-            <div class="paper-content">
-                <a class="paper-link" href="#">
-                    <img src="http://placekitten.com/30/30">
-                </a>
-                <p class="paper-text">Lorem ipsum dolor sit amet!</p>
-            </div>
-
-        </div>
-        <div class="paper">
-
-            <div class="paper-holder">
-                <a><img class="himg" width="190" src="http://placekitten.com/190/192"></a>
-            </div>
-            <p class="paper-description">
-                Lorem ipsum dolor sit amet
-            </p>
-
-            <div class="paper-content">
-                <a class="paper-link" href="#">
-                    <img src="http://placekitten.com/30/30">
-                </a>
-                <p class="paper-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem, sequi blanditiis quod aliquid maiores dicta explicabo doloribus iste reiciendis quaerat voluptate, aspernatur sint beatae delectus tempore quo est ipsum eos!</p>
-            </div>
-
-        </div>
-        <div class="paper">
-
-            <div class="paper-holder">
-                <a><img class="himg" width="190" src="http://placekitten.com/190/317"></a>
-            </div>
-            <p class="paper-description">
-                Lorem ipsum dolor sit amet
-            </p>
-
-            <div class="paper-content">
-                <a class="paper-link" href="#">
-                    <img src="http://placekitten.com/30/30">
-                </a>
-                <p class="paper-text">Lorem ipsum dolor sit amet!</p>
-            </div>
-
-        </div>
-        <div class="paper">
-
-            <div class="paper-holder">
-                <a><img class="himg" width="190" src="http://placekitten.com/190/326"></a>
-            </div>
-            <p class="paper-description">
-                Lorem ipsum dolor sit amet
-            </p>
-
-            <div class="paper-content">
-                <a class="paper-link" href="#">
-                    <img src="http://placekitten.com/30/30">
-                </a>
-                <p class="paper-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem, sequi blanditiis quod aliquid maiores dicta explicabo doloribus iste reiciendis quaerat voluptate, aspernatur sint beatae delectus tempore quo est ipsum eos!</p>
-            </div>
-
-        </div>
-        <div class="paper">
-
-            <div class="paper-holder">
-                <a><img class="himg" width="190" src="http://placekitten.com/190/258"></a>
-            </div>
-            <p class="paper-description">
-                Lorem ipsum dolor sit amet
-            </p>
-
-            <div class="paper-content">
-                <a class="paper-link" href="#">
-                    <img src="http://placekitten.com/30/30">
-                </a>
-                <p class="paper-text">Lorem ipsum dolor sit amet!</p>
-            </div>
-
-        </div>
+        </div> -->
         <!-- 페이퍼 끝 -->
     </section>
 
