@@ -24,48 +24,7 @@
         var files;
         var array, array2;
         var init_flag = false;
-        
-        $(document).ready(function() {
-            // Initialising the canvas// Initialising the canvas
-var canvas = document.querySelector('canvas'),
-    ctx = canvas.getContext('2d');
-
-// Setting the width and height of the canvas
-canvas.width = $(document).width();
-canvas.height = $(document).height();
-
-// Setting up the letters
-var letters = 'ABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZ';
-letters = letters.split('');
-
-// Setting up the columns
-var fontSize = 10,
-    columns = canvas.width / fontSize;
-
-// Setting up the drops
-var drops = [];
-for (var i = 0; i < columns; i++) {
-  drops[i] = 1;
-}
-
-// Setting up the draw function
-function draw() {
-  ctx.fillStyle = 'rgba(0, 0, 0, .1)';
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-  for (var i = 0; i < drops.length; i++) {
-    var text = letters[Math.floor(Math.random() * letters.length)];
-    ctx.fillStyle = '#0f0';
-    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-    drops[i]++;
-    if (drops[i] * fontSize > canvas.height && Math.random() > .95) {
-      drops[i] = 0;
-    }
-  }
-}
-
-// Loop the animation
-setInterval(draw, 33);
-        });
+        var interval = null;
 
         // 함수 (showLightBox(), hideLightBox())
         function showLightBox() {
@@ -192,7 +151,7 @@ setInterval(draw, 33);
                 
             });
             $("#file-select").change(function() {
-                
+
                 $("section").fadeOut(500);
                 setTimeout(() => {
                 $("section").fadeIn();
@@ -217,6 +176,7 @@ setInterval(draw, 33);
                         j++;
                     }
                 }
+                
                 
                 // alert($('input.input-search').val());
                 
@@ -287,16 +247,17 @@ setInterval(draw, 33);
                 //     columnWidth: 230,
                 //     isAnimated: true
                 // }); 
-                setTimeout(function() {
-                    $("#main-section").masonry({
-                        itemSelector: ".paper",
-                        columnWidth: 230,
-                        isAnimated: true
-                    });
-                    $(".paper").css("visibility","visible");
-                    $(".paper").hide();
-                    $(".paper").show("slow");
+                    setTimeout(function() {
+                        $("#main-section").masonry({
+                            itemSelector: ".paper",
+                            columnWidth: 230,
+                            isAnimated: true
+                        });
+                        $(".paper").css("visibility","visible");
+                        $(".paper").hide();
+                        $(".paper").show("slow");
                     }, (array.length * 50)); // masonry는 시간이 걸리기 때문에, 사진 당 50ms 씩 딜레이를 줌
+
                 });
                 }, 500);
             });
