@@ -1,13 +1,17 @@
 
 #main-navigation {
-    height: 30px;
+    height: 50px;
     /* background: #faf7f7; */
 
     /* border-top: 1px solid #cfcaca; */
     box-shadow: 1px 3px 3px rgba(34, 25, 25, 0.4);
 
-    filter: blur(2px);
-    -webkit-filter: blur(2px);
+    /* filter: blur(2px); */
+    /* -webkit-filter: blur(2px); */
+    text-align: center;
+}
+.navi-div {
+    display: inline-block;
 }
 
 #main-navigation > ul {

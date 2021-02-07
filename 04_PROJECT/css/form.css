@@ -1,11 +1,11 @@
 
 #main-header {
-    height: 40px;
+    height: 100px;
     /* background-color: #faf7f7; */
     position: relative;
 
-    filter: blur(2px);
-    -webkit-filter: blur(2px);
+    /* filter: blur(2px); */
+    /* -webkit-filter: blur(2px); */
 }
 
 .header-search-form {float: left;}
@@ -16,13 +16,14 @@
 }
 .header-title {
     position: absolute;
-    width: 200px;
-    height: 40px;
-    left: 50%; margin-left: -100px;
+    width: 500px;
+    height: 100px;
+    left: 50%; 
+    margin-left: -250px;
 
-    background-image: url('../logoes/logo.png');
+    background-image: url('../logoes/logo3.png');
     background-repeat: no-repeat;
-    text-indent: -1000px;
+    /* text-indent: -1000px; */
 }
 
 .outer-menu {

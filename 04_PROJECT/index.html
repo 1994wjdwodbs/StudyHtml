@@ -118,7 +118,6 @@
 
         // 함수 (showLightBox(), hideLightBox())
         function showLightBox() {
-            // console.log($(document).scrollTop());
             $("#lightbox").css("top", $(document).scrollTop());
 
             // 라이트박스 보여주는 애니메이션
@@ -201,12 +200,13 @@
                 
                 // 클릭한 사진으로 팝업
                 $("#random-image").attr("src", $(this).find(".himg").attr("src").toString());
-                console.log("test");
-                console.log($(this).find(".paper-text").text() + ", next?");
-                $(".user-information-text > h3").html("TEST");
+                // console.log("test~!!!");
+                // console.log($(this).find(".paper-text").text() + ", next?");
+                // $(".user-information-text > h3").html("TEST");
                 //라이트박스 크기 조절
                 $("#lightbox").attr("width", $(window).width()*(3/4));
                 $("#lightbox").attr("height", $(window).height()*(3/4));
+                // $("#rightbox").attr("width", ($(window).width() - $("#lightbox").attr("width")) / 2);
 
                 // 라이트박스 내 이미지 크기 조절
                 $("#random-image").css({
@@ -273,7 +273,7 @@
                             array3[j] = comma(parseInt(array3[j]/(1024*1024))) + " MB";
 
                         // 입력받은 만큼 paper (div) 태그 만들기
-                        $("<div class=\"paper\"><div class=\"paper-holder\"><a><img class=\"himg\" width=\"190\" ></a></div><div class=\"paper-content\"><a class=\"paper-link\" href=\"#\"><img src=\"http://placekitten.com/30/30\"></a><p class=\"paper-text\">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem, sequi blanditiis quod aliquid maiores dicta explicabo doloribus iste reiciendis quaerat voluptate, aspernatur sint beatae delectus tempore quo est ipsum eos!</p></div></div>").appendTo("section");
+                        $("<div class=\"paper\"><input class=\"img_path\" type=\"hidden\" value=\"" + array[j] + "\"><div class=\"paper-holder\"><a><img class=\"himg\" width=\"190\" ></a></div><div class=\"paper-content\"><a class=\"paper-link\" href=\"#\"><img src=\"http://placekitten.com/30/30\"></a><p class=\"paper-text\">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem, sequi blanditiis quod aliquid maiores dicta explicabo doloribus iste reiciendis quaerat voluptate, aspernatur sint beatae delectus tempore quo est ipsum eos!</p></div></div>").appendTo("section");
                         $(".paper").css("visibility", "hidden");
                         console.log(array[j]);
                         j++;
@@ -289,24 +289,45 @@
                 
                 // 새로 만든 div 요소의 이벤트 위임
                 $(document).on("click", ".paper", function() {
-                    $("#random-image").attr("src", $(this).find(".himg").attr("src").toString());
 
+                    $("#random-image").attr("src", $(this).find(".himg").attr("src").toString());
+                    // console.log("/" + "DownloadImage(" + $(this).find(".img_path").val().toString() + ")");
+                    $(".user-information-text > h3").html($(this).find(".paper-text").text());
+                    $(".user-information-text > a").text("TEST");
+                    // <a href="#" onclick="fnc();return false;">
+                    // $(".user-information-text > a").attr("onclick","DownloadImage(" + $("#random-image") + ")");
+                    // $(".user-information-text > a").attr("download", $(this).find(".paper-text").text().split(" ")[0]);
+                    
                     //라이트박스 크기 조절
                     $("#lightbox").css({
                         "width":$(window).width()*(3/4),
                         "height":$(window).height()*(3/4)
                     });
+                    
+                    $("#leftbox").css("top", $(document).scrollTop());
+                    $("#leftbox").css({"height":($(window).height()*(3/4))});
+                    $("#rightbox").css("top", $(document).scrollTop());
+                    $("#rightbox").css({"height":($(window).height()*(3/4))});
 
-                    console.log($("#lightbox").attr("width"));
-                    console.log($("#lightbox").attr("height"));
+                    // console.log($("#lightbox").attr("width"));
+                    // console.log($("#lightbox").attr("height"));
 
                     // 라이트박스 내 이미지 크기 조절
                     $("#random-image").css({
                         "width":$(window).width()*(3/4),
                         "height":$(window).height()*(3/4) - 10*2 -70
                     });
-                    console.log($(".user-information-image").height());
+                    // console.log($(".user-information-image").height());
                     showLightBox();
+
+                    var papers =$(".paper");
+                
+                for(let i = 0; i < $(".paper").length; i++) {
+                    if($(this).get(0) == $(papers[i]).get(0)) {
+                        console.log("Find : " + array2[i]);
+                    }
+
+                }
                 });
 
                 var papers =$(".paper");
@@ -321,7 +342,7 @@
                     for(let i = 0; i < $(".paper").length; i++) {
                         
                         $(papers[i]).find(".himg").attr("src", array[i]);
-                        $(papers[i]).find(".paper-text").html(array2[i] + "<br>(" + array3[i] +")");
+                        $(papers[i]).find(".paper-text").html(array2[i] + " <br>(" + array3[i] +")");
                         // $("user-information-text > h3").html(array2[i]);
                         
                         //var infor_p
@@ -469,62 +490,33 @@
     <header id="main-header">
 
         <div class="ui-widget header-search-form">
-            <form>
-                <input type="text" class="input-search">
-                <input type="file" class="input-search-submit" 
-                id="file-select" webkitdirectory multiple>
-            </form>
         </div>
 
-        <h1 class="header-title">Interest</h1>
-
-        <div class="header-menu">
-
-            <ul class="outer-menu">
-                <li>
-                    <a href="#">정보</a>
-                    <ul class="inner-menu">
-                        <li><a href="#">데이터</a></li>
-                        <li><a href="#">데이터</a></li>
-                        <li><a href="#">데이터</a></li>
-                        <li><a href="#">데이터</a></li>
-                        <li><a href="#">데이터</a></li>
-                        <li><a href="#">데이터</a></li>
-                    </ul>
-                </li>
-            </ul>
-
-            <ul class="outer-menu">
-                <li>
-                    <a href="#">사용자</a>
-                    <ul class="inner-menu">
-                        <li><a href="#">데이터</a></li>
-                        <li><a href="#">데이터</a></li>
-                        <li><a href="#">데이터</a></li>
-                        <li><a href="#">데이터</a></li>
-                    </ul>
-                </li>
-            </ul>
-
-        </div>
-
+        <h1 class="header-title"></h1>
     </header>
 
     <nav id="main-navigation">
-
-        <ul>
+        <div class="navi-div">
+        <form>
+            <input type="file" class="file-submit" 
+            id="file-select" webkitdirectory multiple><br>
+            <input type="text" class="input-search">
+            <div class="click_div">Click Here~!!</div>
+        </form>
+        <!-- <ul>
             <li><a href="#">Following</a></li>
             <li><a href="#">Categories</a></li>
             <li><a href="#">Everything</a></li>
             <li><a href="#">Popular</a></li>
             <li><a href="#">Gift</a></li>
-        </ul>
-
+        </ul> -->
+        </div>
     </nav>
 
     <section id="main-section">
         <!-- 페이퍼 시작 -->
         <!-- <div class="paper">
+            <input class="img_path" type="hidden" value="">
 
             <div class="paper-holder">
                 <a><img class="himg" width="190" src="http://placekitten.com/190/328"></a>
@@ -545,6 +537,7 @@
     </section>
 
     <div id="darken-background">
+        <div id="leftbox"></div>
         <div id="lightbox">
             <div class="user-information">
 
@@ -554,7 +547,6 @@
                 
                 <div class="user-information-text">
                     <h3>User</h3>
-                    <p>Lorem ipsum dolor sit amet.</p>
                 </div>
 
             </div>
@@ -563,6 +555,7 @@
 
             <img id="random-image" src="http://placekitten.com/600/750">
         </div>
+        <div id="rightbox"></div>
     </div>
 
     <footer id="main-footer">

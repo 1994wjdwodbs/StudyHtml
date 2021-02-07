@@ -6,9 +6,28 @@
 
     display: none;
     background: rgba(0, 0, 0, 0.9);
-    z-index: 10000;
+    z-index: 10;
 
     overflow-y: hidden; /* 보기 더 안좋아서 감춤!! */
+}
+
+#leftbox {
+    position: absolute;
+    margin: 20px auto;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: rgba(163, 100, 100, 0.5);
+    z-index: 15;
+}
+#rightbox {
+    position: absolute;
+    margin: 20px auto;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    background: rgba(106, 100, 163, 0.5);
+    z-index: 15;
 }
 
 #lightbox {
@@ -24,6 +43,7 @@
     text-align: center;
 
     left:50%; transform:translateX(-50%); /* 중앙정렬 */
+    z-index: 100;
 }
 
 .user-information {
