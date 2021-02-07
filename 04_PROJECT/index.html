@@ -19,12 +19,102 @@
     <script src="js/imagesloaded.pkgd.min.js"></script>
     <script src="js/jquery.autocomplete.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    
+    <!-- 이미지 크기 표시 (집어넣어야함) -->
+    <!-- 이미지 다운로드 () -->
+    <!-- 흰 글자 박스 타입 png 만들기 () -->
+    <!-- 파일 읽기 / 검색 박스, 검색 만들기 및 디자인 () -->
+    <!-- html github 정리 -->
+    
+    <!-- html 예제(복붙) 및 연습문제 풀이 -->
+    <!-- mssql 설치, 공부 -->
+    <!-- 정처기, 컴활 빠른 학습 -->
+    
     <script>
         // 전역 변수
         var files;
-        var array, array2;
+        var array, array2, array3;
         var init_flag = false;
         var interval = null;
+
+        // 숫자 콤마 찍어주는 함수
+        function comma(value) {
+            var data = value + "";
+            var arrResult = data.split(""); 
+            var startIndex = arrResult.length - 3; 
+            for (let i = startIndex; i > 0; i = i - 3) { 
+                arrResult.splice(i, 0, ","); 
+            } 
+            return arrResult.join(''); 
+        }
+
+        $(document).ready(function() {
+            var colors = new Array(
+                [62,35,255], 
+                [60,255,60],
+                [255,35,98],
+                [45,175,230],
+                [255,0,255],
+                [255,128,0]);
+
+                var step = 0;
+                //color table indices for: 
+
+                // current color left
+                // next color left
+                // current color right
+                // next color right
+                var colorIndices = [0,1,2,3];
+
+                //transition speed
+                var gradientSpeed = 0.001;
+
+                clearInterval(interval);
+
+                function updateGradient() {
+                    if(interval != null)
+                        
+                    if ( $===undefined ) return;
+                    
+                    if($("#gradient").height)
+
+                    var c0_0 = colors[colorIndices[0]];
+                    var c0_1 = colors[colorIndices[1]];
+                    var c1_0 = colors[colorIndices[2]];
+                    var c1_1 = colors[colorIndices[3]];
+
+                    var istep = 1 - step;
+                    var r1 = Math.round(istep * c0_0[0] + step * c0_1[0]);
+                    var g1 = Math.round(istep * c0_0[1] + step * c0_1[1]);
+                    var b1 = Math.round(istep * c0_0[2] + step * c0_1[2]);
+                    var color1 = "rgb("+r1+","+g1+","+b1+")";
+
+                    var r2 = Math.round(istep * c1_0[0] + step * c1_1[0]);
+                    var g2 = Math.round(istep * c1_0[1] + step * c1_1[1]);
+                    var b2 = Math.round(istep * c1_0[2] + step * c1_1[2]);
+                    var color2 = "rgb("+r2+","+g2+","+b2+")";
+
+                    $('#gradient').css({
+                    background: "-webkit-gradient(linear, left top, right top, from("+color1+"), to("+color2+"))"}).css({
+                        background: "-moz-linear-gradient(left, "+color1+" 0%, "+color2+" 100%)"});
+                    
+                    step += gradientSpeed;
+                    if ( step >= 1 )
+                    {
+                        step %= 1; // 0 ~ 1 사이값
+                        colorIndices[0] = colorIndices[1];
+                        colorIndices[2] = colorIndices[3];
+                        
+                        //pick two new target color indices
+                        //do not pick the same as the current one
+                        colorIndices[1] = ( colorIndices[1] + Math.floor( 1 + Math.random() * (colors.length - 1))) % colors.length;
+                        colorIndices[3] = ( colorIndices[3] + Math.floor( 1 + Math.random() * (colors.length - 1))) % colors.length;
+                    }
+                }
+
+                interval = setInterval(updateGradient,10);
+        });
+        
 
         // 함수 (showLightBox(), hideLightBox())
         function showLightBox() {
@@ -161,6 +251,7 @@
                 // 전역변수 array 초기화(재사용)
                 array = [];
                 array2 = [];
+                array3 = [];
                 $("section").empty();
 
                 for(let i = 0, j = 0; i < files.length; i++) {
@@ -170,7 +261,17 @@
                     files[i].webkitRelativePath.includes("png") || files[i].webkitRelativePath.includes("gif")) {
                         array[j] = files[i].webkitRelativePath;
                         array2[j] = files[i].name;
-                        $("<div class=\"paper\"><div class=\"paper-holder\"><a><img class=\"himg\" width=\"190\" ></a></div><p class=\"paper-description\">Lorem ipsum dolor sit amet</p><div class=\"paper-content\"><a class=\"paper-link\" href=\"#\"><img src=\"http://placekitten.com/30/30\"></a><p class=\"paper-text\">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem, sequi blanditiis quod aliquid maiores dicta explicabo doloribus iste reiciendis quaerat voluptate, aspernatur sint beatae delectus tempore quo est ipsum eos!</p></div></div>").appendTo("section");
+                        array3[j] = files[i].size;
+
+                        if(array3[j] < 1024)
+                            array3[j] = comma(array3[j]) + " Byte";
+                        else if(array3[j] < 1024 * 1024)
+                            array3[j] = comma(parseInt(array3[j]/1024)) + " KB";
+                        else  // (array3[j] >= 1024 * 1024 )
+                            array3[j] = comma(parseInt(array3[j]/(1024*1024))) + " MB";
+
+                        // 입력받은 만큼 paper (div) 태그 만들기
+                        $("<div class=\"paper\"><div class=\"paper-holder\"><a><img class=\"himg\" width=\"190\" ></a></div><div class=\"paper-content\"><a class=\"paper-link\" href=\"#\"><img src=\"http://placekitten.com/30/30\"></a><p class=\"paper-text\">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem, sequi blanditiis quod aliquid maiores dicta explicabo doloribus iste reiciendis quaerat voluptate, aspernatur sint beatae delectus tempore quo est ipsum eos!</p></div></div>").appendTo("section");
                         $(".paper").css("visibility", "hidden");
                         console.log(array[j]);
                         j++;
@@ -218,7 +319,7 @@
                     for(let i = 0; i < $(".paper").length; i++) {
                         
                         $(papers[i]).find(".himg").attr("src", array[i]);
-                        $(papers[i]).find(".paper-text").html(array2[i]);
+                        $(papers[i]).find(".paper-text").html(array2[i] + "<br>(" + array3[i] +")");
                         // $(papers[i]).css("visibility","hidden");
 
                         var random_num;
@@ -256,6 +357,71 @@
                         $(".paper").css("visibility","visible");
                         $(".paper").hide();
                         $(".paper").show("slow");
+
+                        var colors = new Array(
+                        [62,35,255], 
+                        [60,255,60],
+                        [255,35,98],
+                        [45,175,230],
+                        [255,0,255],
+                        [255,128,0]);
+
+                        var step = 0;
+                        //color table indices for: 
+
+                        // current color left
+                        // next color left
+                        // current color right
+                        // next color right
+                        var colorIndices = [0,1,2,3];
+
+                        //transition speed
+                        var gradientSpeed = 0.001;
+
+                        clearInterval(interval);
+
+                        function updateGradient() {
+                            if(interval != null)
+                                
+                            if ( $===undefined ) return;
+                            
+                            if($("#gradient").height)
+
+                            var c0_0 = colors[colorIndices[0]];
+                            var c0_1 = colors[colorIndices[1]];
+                            var c1_0 = colors[colorIndices[2]];
+                            var c1_1 = colors[colorIndices[3]];
+
+                            var istep = 1 - step;
+                            var r1 = Math.round(istep * c0_0[0] + step * c0_1[0]);
+                            var g1 = Math.round(istep * c0_0[1] + step * c0_1[1]);
+                            var b1 = Math.round(istep * c0_0[2] + step * c0_1[2]);
+                            var color1 = "rgb("+r1+","+g1+","+b1+")";
+
+                            var r2 = Math.round(istep * c1_0[0] + step * c1_1[0]);
+                            var g2 = Math.round(istep * c1_0[1] + step * c1_1[1]);
+                            var b2 = Math.round(istep * c1_0[2] + step * c1_1[2]);
+                            var color2 = "rgb("+r2+","+g2+","+b2+")";
+
+                            $('#gradient').css({
+                            background: "-webkit-gradient(linear, left top, right top, from("+color1+"), to("+color2+"))"}).css({
+                                background: "-moz-linear-gradient(left, "+color1+" 0%, "+color2+" 100%)"});
+                            
+                            step += gradientSpeed;
+                            if ( step >= 1 )
+                            {
+                                step %= 1; // 0 ~ 1 사이값
+                                colorIndices[0] = colorIndices[1];
+                                colorIndices[2] = colorIndices[3];
+                                
+                                //pick two new target color indices
+                                //do not pick the same as the current one
+                                colorIndices[1] = ( colorIndices[1] + Math.floor( 1 + Math.random() * (colors.length - 1))) % colors.length;
+                                colorIndices[3] = ( colorIndices[3] + Math.floor( 1 + Math.random() * (colors.length - 1))) % colors.length;
+                            }
+                        }
+
+                        interval = setInterval(updateGradient,10);
                     }, (array.length * 50)); // masonry는 시간이 걸리기 때문에, 사진 당 50ms 씩 딜레이를 줌
 
                 });
@@ -294,7 +460,7 @@
 </head>
 
 <body>
-    <canvas></canvas>
+    <div id="gradient" />
     <header id="main-header">
 
         <div class="ui-widget header-search-form">

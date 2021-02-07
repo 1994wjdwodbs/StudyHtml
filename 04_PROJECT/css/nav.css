@@ -1,10 +1,13 @@
 
 #main-navigation {
     height: 30px;
-    background: #faf7f7;
+    /* background: #faf7f7; */
 
-    border-top: 1px solid #cfcaca;
+    /* border-top: 1px solid #cfcaca; */
     box-shadow: 1px 3px 3px rgba(34, 25, 25, 0.4);
+
+    filter: blur(2px);
+    -webkit-filter: blur(2px);
 }
 
 #main-navigation > ul {

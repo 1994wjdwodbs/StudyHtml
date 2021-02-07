@@ -1,8 +1,11 @@
 
 #main-header {
     height: 40px;
-    background-color: #faf7f7;
+    /* background-color: #faf7f7; */
     position: relative;
+
+    filter: blur(2px);
+    -webkit-filter: blur(2px);
 }
 
 .header-search-form {float: left;}
