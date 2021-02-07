@@ -34,8 +34,11 @@
         // 전역 변수
         var files;
         var array, array2, array3;
+        var array4;
         var init_flag = false;
         var interval = null;
+        var clickflag = false;
+        var CurrentPage;
 
         // 숫자 콤마 찍어주는 함수
         function comma(value) {
@@ -47,7 +50,194 @@
             } 
             return arrResult.join(''); 
         }
+        $(document).ready(function() {
+            $("input[name=input-search-name]").keydown(function (key) {
+                console.log("진입1");
+ 
+                if(key.keyCode == 13 && $("input[name=input-search-name]").val().trim() != '') {//키가 13이고 빈값이 아니면 실행 (엔터는 13)
+                    var papers =$(".paper");
+                    console.log("진입2");
+                    console.log($("input[name=input-search-name]").val());
+                    
+                    array4 = []; // 초기화
+                    var count = 0;
+                    for(let i = 0; i < $(".paper").length; i++) {
+                        console.log($(papers[i]).find(".img_path").val());
+                        $(papers[i]).hide();
 
+                        if($(papers[i]).find(".img_path").val().toString().includes($("input[name=input-search-name]").val().toString())) {
+                            $(papers[i]).show("slow");
+                            count++;
+                        }
+                    }
+                    setTimeout(function() {
+                        $("#main-section").masonry({
+                            itemSelector: ".paper",
+                            columnWidth: 230,
+                            isAnimated: true
+                        });
+
+                        var colors = new Array(
+                        [62,35,255], 
+                        [60,255,60],
+                        [255,35,98],
+                        [45,175,230],
+                        [255,0,255],
+                        [255,128,0]);
+
+                        var step = 0;
+                        //color table indices for: 
+
+                        // current color left
+                        // next color left
+                        // current color right
+                        // next color right
+                        var colorIndices = [0,1,2,3];
+
+                        //transition speed
+                        var gradientSpeed = 0.001;
+
+                        clearInterval(interval);
+
+                        function updateGradient() {
+                            if(interval != null)
+                                
+                            if ( $===undefined ) return;
+                            
+                            if($("#gradient").height)
+
+                            var c0_0 = colors[colorIndices[0]];
+                            var c0_1 = colors[colorIndices[1]];
+                            var c1_0 = colors[colorIndices[2]];
+                            var c1_1 = colors[colorIndices[3]];
+
+                            var istep = 1 - step;
+                            var r1 = Math.round(istep * c0_0[0] + step * c0_1[0]);
+                            var g1 = Math.round(istep * c0_0[1] + step * c0_1[1]);
+                            var b1 = Math.round(istep * c0_0[2] + step * c0_1[2]);
+                            var color1 = "rgb("+r1+","+g1+","+b1+")";
+
+                            var r2 = Math.round(istep * c1_0[0] + step * c1_1[0]);
+                            var g2 = Math.round(istep * c1_0[1] + step * c1_1[1]);
+                            var b2 = Math.round(istep * c1_0[2] + step * c1_1[2]);
+                            var color2 = "rgb("+r2+","+g2+","+b2+")";
+
+                            $('#gradient').css({
+                            background: "-webkit-gradient(linear, left top, right top, from("+color1+"), to("+color2+"))"}).css({
+                                background: "-moz-linear-gradient(left, "+color1+" 0%, "+color2+" 100%)"});
+                            
+                            step += gradientSpeed;
+                            if ( step >= 1 )
+                            {
+                                step %= 1; // 0 ~ 1 사이값
+                                colorIndices[0] = colorIndices[1];
+                                colorIndices[2] = colorIndices[3];
+                                
+                                //pick two new target color indices
+                                //do not pick the same as the current one
+                                colorIndices[1] = ( colorIndices[1] + Math.floor( 1 + Math.random() * (colors.length - 1))) % colors.length;
+                                colorIndices[3] = ( colorIndices[3] + Math.floor( 1 + Math.random() * (colors.length - 1))) % colors.length;
+                            }
+                        }
+
+                        interval = setInterval(updateGradient,10);
+                    }, (count * 200));
+                }
+            });
+        
+        });
+
+        function leftClick() {
+            clickflag = false;
+            console.log("L");
+
+            var papers =$(".paper");
+            console.log($(".paper").length);
+            for(let i = 0; i < $(".paper").length; i++) {
+                // if($(this).get(0) == $(papers[i]).get(0))
+                if($(CurrentPage).get(0) == $(papers[i]).get(0)) {
+                    console.log(i);
+                    do {
+                        i = (i + ($(".paper").length - 1)) % $(".paper").length;
+                        if($(CurrentPage).get(0) == $(papers[i]).get(0))
+                            break;
+                        else {}
+                    } while(!$(papers[i]).is(':visible'));
+
+                    $("#random-image").attr("src", $(papers[i]).find(".himg").attr("src").toString());
+                    // console.log("/" + "DownloadImage(" + $(this).find(".img_path").val().toString() + ")");
+                    $(".user-information-text > h3").html($(papers[i]).find(".paper-text").text());
+
+                    if($(papers[i]).find(".img_path").val().includes(".jpg")) {
+                        $(".user-information-image > img").attr("src", "logoes/jpg_icon.png");
+                        $(".user-information-image > img").attr("width", "70px");
+                        $(".user-information-image > img").attr("height", "70px");
+                    }
+                    else if($(papers[i]).find(".img_path").val().toString().includes("png")) {
+                        $(".user-information-image > img").attr("src", "logoes/png_icon.png");
+                        $(".user-information-image > img").attr("width", "70px");
+                        $(".user-information-image > img").attr("height", "70px");
+                    }
+                    else if($(papers[i]).find(".img_path").val().toString().includes("gif")) {
+                        $(".user-information-image > img").attr("src", "logoes/gif_icon.png");
+                        $(".user-information-image > img").attr("width", "70px");
+                        $(".user-information-image > img").attr("height", "70px");
+                    }
+                    
+
+                    CurrentPage = papers[i]; // 현재 페이지 포인터 갱신
+                    break;
+                }
+            }
+            
+            setTimeout(function() {clickflag = true;}, 500);
+            
+        }
+        function rightClick() {
+            clickflag = false;
+            console.log("R");
+
+            var papers =$(".paper");
+            console.log($(".paper").length);
+            for(let i = 0; i < $(".paper").length; i++) {
+                // if($(this).get(0) == $(papers[i]).get(0))
+                if($(CurrentPage).get(0) == $(papers[i]).get(0)) {
+                    console.log(i);
+                    do {
+                        i = (i + 1) % $(".paper").length;
+                        if($(CurrentPage).get(0) == $(papers[i]).get(0))
+                            break;
+                        else {}
+                    } while(!$(papers[i]).is(':visible'));
+
+                    $("#random-image").attr("src", $(papers[i]).find(".himg").attr("src").toString());
+                    // console.log("/" + "DownloadImage(" + $(this).find(".img_path").val().toString() + ")");
+                    $(".user-information-text > h3").html($(papers[i]).find(".paper-text").text());
+
+                    if($(papers[i]).find(".img_path").val().includes(".jpg")) {
+                        $(".user-information-image > img").attr("src", "logoes/jpg_icon.png");
+                        $(".user-information-image > img").attr("width", "70px");
+                        $(".user-information-image > img").attr("height", "70px");
+                    }
+                    else if($(papers[i]).find(".img_path").val().toString().includes("png")) {
+                        $(".user-information-image > img").attr("src", "logoes/png_icon.png");
+                        $(".user-information-image > img").attr("width", "70px");
+                        $(".user-information-image > img").attr("height", "70px");
+                    }
+                    else if($(papers[i]).find(".img_path").val().toString().includes("gif")) {
+                        $(".user-information-image > img").attr("src", "logoes/gif_icon.png");
+                        $(".user-information-image > img").attr("width", "70px");
+                        $(".user-information-image > img").attr("height", "70px");
+                    }
+                    CurrentPage = papers[i]; // 현재 페이지 포인터 갱신
+                    break;
+                }
+            }
+
+            setTimeout(function() {clickflag = true;}, 500);
+        }
+        
+        // 배경
         $(document).ready(function() {
             var colors = new Array(
                 [62,35,255], 
@@ -141,11 +331,12 @@
             })*/
         }
         function hideLightBox() {
-            // 라이트박스 숨기는 애니메이션
-            $("#darken-background").animate({
-                height:"0%"
-            }, 500);
-            
+            if(clickflag) {
+                // 라이트박스 숨기는 애니메이션
+                $("#darken-background").animate({
+                    height:"0%"
+                }, 500);
+            }
             // 스크롤 정상 작동
             // $("body").css("overflow", "auto");
         }
@@ -180,24 +371,11 @@
         });
 
         $(document).ready(function() {
-
-            // 클릭 이벤트 
+            //
+            // 클릭 이벤트 (이쪽은 이제 지워야됨 (새로운 div 태그에 적용이 안되기 때문))
+            //
             $(".paper").click(function() {
-
-                // 일부 보이기 (테스트)
-                // var papers =$(".paper");
-                // for(let i = 0; i < 10; i++)
-                //     $(papers[i]).show();
-
-                // $("#main-section").masonry({
-                //     itemSelector: ".paper",
-                //     columnWidth: 230,
-                //     isAnimated: true
-                // });
-
-                // console.log($("#random-image").attr("src"));
-                // console.log($(this).find(".himg").attr("src"));
-                
+                CurrentPage = $(this);
                 // 클릭한 사진으로 팝업
                 $("#random-image").attr("src", $(this).find(".himg").attr("src").toString());
                 // console.log("test~!!!");
@@ -213,7 +391,6 @@
                     "width":$(window).width()/3,
                     "height":$(window).height()*(2/3)
                 });
-                
                 showLightBox();
             });
 
@@ -227,17 +404,7 @@
             });
         });
         
-        // 프로젝트 개량 : 내 폴더 이미지 갤러리 (Jallery)
-        
         $(document).ready(function() {
-
-            // Check for the various File API support.
-            // if (window.File && window.FileReader && window.FileList && window.Blob) {
-            // Great success! All the File APIs are supported.
-            // console.log("ok");
-            // } else {
-            // alert('The File APIs are not fully supported in this browser.');
-            // }
 
             $("#file-select").click(function() { 
                 
@@ -287,13 +454,30 @@
                 console.log(array);
                 $('input.input-search').autocomplete({source: array});
                 
-                // 새로 만든 div 요소의 이벤트 위임
+                // 새로 만든 div 요소의 클릭 이벤트 위임
                 $(document).on("click", ".paper", function() {
+                    clickflag = true;
+                    CurrentPage = $(this);
 
                     $("#random-image").attr("src", $(this).find(".himg").attr("src").toString());
                     // console.log("/" + "DownloadImage(" + $(this).find(".img_path").val().toString() + ")");
                     $(".user-information-text > h3").html($(this).find(".paper-text").text());
-                    $(".user-information-text > a").text("TEST");
+                    // console.log($(CurrentPage).find(".img_path").val());
+                    if($(CurrentPage).find(".img_path").val().includes(".jpg")) {
+                        $(".user-information-image > img").attr("src", "logoes/jpg_icon.png");
+                        $(".user-information-image > img").attr("width", "70px");
+                        $(".user-information-image > img").attr("height", "70px");
+                    }
+                    else if($(CurrentPage).find(".img_path").val().toString().includes("png")) {
+                        $(".user-information-image > img").attr("src", "logoes/png_icon.png");
+                        $(".user-information-image > img").attr("width", "70px");
+                        $(".user-information-image > img").attr("height", "70px");
+                    }
+                    else if($(CurrentPage).find(".img_path").val().toString().includes("gif")) {
+                        $(".user-information-image > img").attr("src", "logoes/gif_icon.png");
+                        $(".user-information-image > img").attr("width", "70px");
+                        $(".user-information-image > img").attr("height", "70px");
+                    }
                     // <a href="#" onclick="fnc();return false;">
                     // $(".user-information-text > a").attr("onclick","DownloadImage(" + $("#random-image") + ")");
                     // $(".user-information-text > a").attr("download", $(this).find(".paper-text").text().split(" ")[0]);
@@ -303,11 +487,6 @@
                         "width":$(window).width()*(3/4),
                         "height":$(window).height()*(3/4)
                     });
-                    
-                    $("#leftbox").css("top", $(document).scrollTop());
-                    $("#leftbox").css({"height":($(window).height()*(3/4))});
-                    $("#rightbox").css("top", $(document).scrollTop());
-                    $("#rightbox").css({"height":($(window).height()*(3/4))});
 
                     // console.log($("#lightbox").attr("width"));
                     // console.log($("#lightbox").attr("height"));
@@ -317,6 +496,11 @@
                         "width":$(window).width()*(3/4),
                         "height":$(window).height()*(3/4) - 10*2 -70
                     });
+
+                    $("#leftbox").css("top", $(document).scrollTop());
+                    $("#leftbox").css({"height":$("#lightbox").height()});
+                    $("#rightbox").css("top", $(document).scrollTop());
+                    $("#rightbox").css({"height":$("#lightbox").height()});
                     // console.log($(".user-information-image").height());
                     showLightBox();
 
@@ -343,6 +527,22 @@
                         
                         $(papers[i]).find(".himg").attr("src", array[i]);
                         $(papers[i]).find(".paper-text").html(array2[i] + " <br>(" + array3[i] +")");
+                        if(array2[i].includes("jpg")) {
+                            $(papers[i]).find(".paper-content > a > img").attr("src", "logoes/jpg_icon.png");
+                            $(papers[i]).find(".paper-content > a > img").attr("width", "30px");
+                            $(papers[i]).find(".paper-content > a > img").attr("height", "30px");
+                        }
+                        else if(array2[i].includes("png")) {
+                            $(papers[i]).find(".paper-content > a > img").attr("src", "logoes/png_icon.png");
+                            $(papers[i]).find(".paper-content > a > img").attr("width", "30px");
+                            $(papers[i]).find(".paper-content > a > img").attr("height", "30px");
+                        }
+                        else if(array2[i].includes("gif")) {
+                            $(papers[i]).find(".paper-content > a > img").attr("src", "logoes/gif_icon.png");
+                            $(papers[i]).find(".paper-content > a > img").attr("width", "30px");
+                            $(papers[i]).find(".paper-content > a > img").attr("height", "30px");
+                        }
+                        else {}
                         // $("user-information-text > h3").html(array2[i]);
                         
                         //var infor_p
@@ -497,19 +697,15 @@
 
     <nav id="main-navigation">
         <div class="navi-div">
-        <form>
-            <input type="file" class="file-submit" 
-            id="file-select" webkitdirectory multiple><br>
-            <input type="text" class="input-search">
-            <div class="click_div">Click Here~!!</div>
-        </form>
-        <!-- <ul>
-            <li><a href="#">Following</a></li>
-            <li><a href="#">Categories</a></li>
-            <li><a href="#">Everything</a></li>
-            <li><a href="#">Popular</a></li>
-            <li><a href="#">Gift</a></li>
-        </ul> -->
+
+            <div class="image-upload">
+                <label for="file-select">
+                    <img src="logoes/open.jpg"/>
+                </label>
+            
+                <input id="file-select" type="file" style="display: none;" webkitdirectory multiple/>
+            </div>
+            <input type="text" class="input-search" name="input-search-name">
         </div>
     </nav>
 
@@ -537,7 +733,7 @@
     </section>
 
     <div id="darken-background">
-        <div id="leftbox"></div>
+        <div id="leftbox" onclick="leftClick()"></div>
         <div id="lightbox">
             <div class="user-information">
 
@@ -555,7 +751,7 @@
 
             <img id="random-image" src="http://placekitten.com/600/750">
         </div>
-        <div id="rightbox"></div>
+        <div id="rightbox"  onclick="rightClick()"></div>
     </div>
 
     <footer id="main-footer">

@@ -25,34 +25,3 @@
     background-repeat: no-repeat;
     /* text-indent: -1000px; */
 }
-
-.outer-menu {
-    float: left;
-    width: 100px; height: 20px;
-    line-height: 20px;
-    padding: 10px 0;
-    position: relative;
-    text-align: center;
-
-    font-size: 13px;
-    font-weight: bold;
-    
-    z-index: 9999;
-}
-.outer-menu:hover {background-color: #e1dfdf;}
-
-.inner-menu {
-    display: none;
-    background: #FFFFFF;
-    margin-top: 10px;
-    width: 100%;
-    
-    border-top: 1px solid #cccaca;
-    box-shadow: 0 2px 4px rgba(34, 25, 25, 0.5);
-}
-.inner-menu a {
-    display: block;
-    padding: 5px 10px;
-    z-index: 5000;
-}
-.inner-menu a:hover {background: #e1dfdf;}
