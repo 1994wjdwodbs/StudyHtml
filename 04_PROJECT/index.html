@@ -201,7 +201,9 @@
                 
                 // 클릭한 사진으로 팝업
                 $("#random-image").attr("src", $(this).find(".himg").attr("src").toString());
-
+                console.log("test");
+                console.log($(this).find(".paper-text").text() + ", next?");
+                $(".user-information-text > h3").html("TEST");
                 //라이트박스 크기 조절
                 $("#lightbox").attr("width", $(window).width()*(3/4));
                 $("#lightbox").attr("height", $(window).height()*(3/4));
@@ -320,6 +322,9 @@
                         
                         $(papers[i]).find(".himg").attr("src", array[i]);
                         $(papers[i]).find(".paper-text").html(array2[i] + "<br>(" + array3[i] +")");
+                        // $("user-information-text > h3").html(array2[i]);
+                        
+                        //var infor_p
                         // $(papers[i]).css("visibility","hidden");
 
                         var random_num;
