@@ -39,6 +39,7 @@
         var interval = null;
         var clickflag = false;
         var CurrentPage;
+        var lightboxflag = false;
 
         // 숫자 콤마 찍어주는 함수
         function comma(value) {
@@ -51,6 +52,16 @@
             return arrResult.join(''); 
         }
         $(document).ready(function() {
+            $(document).keyup(function() {
+                console.log(lightboxflag);
+                if (event.keyCode == '37' && lightboxflag) {
+                    leftClick();
+                }
+                else if (event.keyCode == '39' && lightboxflag) {
+                    rightClick();
+                }
+            });
+
             $("input[name=input-search-name]").keydown(function (key) {
                 console.log("진입1");
  
@@ -183,7 +194,6 @@
                         $(".user-information-image > img").attr("width", "70px");
                         $(".user-information-image > img").attr("height", "70px");
                     }
-                    
 
                     CurrentPage = papers[i]; // 현재 페이지 포인터 갱신
                     break;
@@ -229,6 +239,7 @@
                         $(".user-information-image > img").attr("width", "70px");
                         $(".user-information-image > img").attr("height", "70px");
                     }
+
                     CurrentPage = papers[i]; // 현재 페이지 포인터 갱신
                     break;
                 }
@@ -308,6 +319,7 @@
 
         // 함수 (showLightBox(), hideLightBox())
         function showLightBox() {
+            lightboxflag = true;
             $("#lightbox").css("top", $(document).scrollTop());
 
             // 라이트박스 보여주는 애니메이션
@@ -332,6 +344,7 @@
         }
         function hideLightBox() {
             if(clickflag) {
+                lightboxflag = false;
                 // 라이트박스 숨기는 애니메이션
                 $("#darken-background").animate({
                     height:"0%"
@@ -397,6 +410,7 @@
             // 바깥 여백(검정색 배경) 클릭 이벤트
             $("#darken-background").click(function() {
                 hideLightBox();
+                console.log("hidelightbox");
             });
             // 라이트박스 제거 이벤트 보조
             $("#lightbox").click(function (event) {
