@@ -20,16 +20,6 @@
     <script src="js/jquery.autocomplete.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     
-    <!-- 이미지 크기 표시 (집어넣어야함) -->
-    <!-- 이미지 다운로드 () -->
-    <!-- 흰 글자 박스 타입 png 만들기 () -->
-    <!-- 파일 읽기 / 검색 박스, 검색 만들기 및 디자인 () -->
-    <!-- html github 정리 -->
-    
-    <!-- html 예제(복붙) 및 연습문제 풀이 -->
-    <!-- mssql 설치, 공부 -->
-    <!-- 정처기, 컴활 빠른 학습 -->
-    
     <script>
         // 전역 변수
         var files;
@@ -105,9 +95,10 @@
                         // next color right
                         var colorIndices = [0,1,2,3];
 
-                        //transition speed
+                        // transition speed
                         var gradientSpeed = 0.001;
 
+                        // 중복 호출 방지
                         clearInterval(interval);
 
                         function updateGradient() {
@@ -176,7 +167,6 @@
                     } while(!$(papers[i]).is(':visible'));
 
                     $("#random-image").attr("src", $(papers[i]).find(".himg").attr("src").toString());
-                    // console.log("/" + "DownloadImage(" + $(this).find(".img_path").val().toString() + ")");
                     $(".user-information-text > h3").html($(papers[i]).find(".paper-text").text());
 
                     if($(papers[i]).find(".img_path").val().includes(".jpg")) {
@@ -221,7 +211,6 @@
                     } while(!$(papers[i]).is(':visible'));
 
                     $("#random-image").attr("src", $(papers[i]).find(".himg").attr("src").toString());
-                    // console.log("/" + "DownloadImage(" + $(this).find(".img_path").val().toString() + ")");
                     $(".user-information-text > h3").html($(papers[i]).find(".paper-text").text());
 
                     if($(papers[i]).find(".img_path").val().includes(".jpg")) {
@@ -267,9 +256,10 @@
                 // next color right
                 var colorIndices = [0,1,2,3];
 
-                //transition speed
+                // transition speed
                 var gradientSpeed = 0.001;
-
+                
+                // 중복 호출 방지
                 clearInterval(interval);
 
                 function updateGradient() {
@@ -327,20 +317,6 @@
                 width:$(document).width(),
                 height:$(document).height()
             }, 500);
-            // 라이트박스 설정
-            
-            // $("#darken-background").css("top", $(window).scrollTop());
-            // 스크롤 방지
-            // $("body").css("overflow", "hidden");
-            
-            // 랜덤 이미지 섞기
-            /*
-            $("#random-image").attr({
-                src: function() {
-                    var rnd_height = Math.floor(Math.random() * 100) + 600;
-                    return "https://placekitten.com/600/" + rnd_height.toString();
-                }
-            })*/
         }
         function hideLightBox() {
             if(clickflag) {
@@ -350,62 +326,35 @@
                     height:"0%"
                 }, 500);
             }
-            // 스크롤 정상 작동
-            // $("body").css("overflow", "auto");
         }
 
-
-        // 풀다운 메뉴 (풀다운 메뉴 적용)
-        $(document).ready(function() { // 로드 이벤트
-            $(".outer-menu").hover
-            (function() {
-                // $(".inner-menu").css("display", "block");
-                // 마우스 이벤트가 발생한 특정 inner-menu 클래스 선택
-                $(this).find(".inner-menu").css("display", "block");
-                
-            }, 
-            function() {
-                $(this).find(".inner-menu").css("display", "none");
-            });
-        });
-
-        // 페이지 (그리드 레이아웃 적용)
         $(document).ready(function() {
-            //이미지 로드 확인 후 Masonry 플러그인 적용
-            // $("#main-section").imagesLoaded(function() {
-
-            //         $("#main-section").masonry({
-            //             itemSelector: ".paper",
-            //             columnWidth: 230,
-            //             isAnimated: true
-            //         });
-            // });
-           
-        });
-
-        $(document).ready(function() {
-            //
-            // 클릭 이벤트 (이쪽은 이제 지워야됨 (새로운 div 태그에 적용이 안되기 때문))
-            //
-            $(".paper").click(function() {
-                CurrentPage = $(this);
-                // 클릭한 사진으로 팝업
-                $("#random-image").attr("src", $(this).find(".himg").attr("src").toString());
-                // console.log("test~!!!");
-                // console.log($(this).find(".paper-text").text() + ", next?");
-                // $(".user-information-text > h3").html("TEST");
+            $(window).resize(function() {
                 //라이트박스 크기 조절
-                $("#lightbox").attr("width", $(window).width()*(3/4));
-                $("#lightbox").attr("height", $(window).height()*(3/4));
-                // $("#rightbox").attr("width", ($(window).width() - $("#lightbox").attr("width")) / 2);
+                $("#lightbox").css({
+                        "width":$(window).width()*(3/4),
+                        "height":$(window).height()*(3/4)
+                    });
 
-                // 라이트박스 내 이미지 크기 조절
-                $("#random-image").css({
-                    "width":$(window).width()/3,
-                    "height":$(window).height()*(2/3)
-                });
-                showLightBox();
+                    // 라이트박스 내 이미지 크기 조절
+                    $("#random-image").css({
+                        "width":$(window).width()*(3/4),
+                        "height":$(window).height()*(3/4) - 10*2 -70
+                    });
+
+                    $("#leftbox").css("top", $(document).scrollTop());
+                    $("#leftbox").css("width", "50%");
+                    $("#leftbox").css("height", $("#lightbox").height());
+                    $("#rightbox").css("top", $(document).scrollTop());
+                    $("#rightbox").css("width", "50%");
+                    $("#rightbox").css("height", $("#lightbox").height());
+
+                    $("#darken-background").css("width", "100%");
+                    $("#darken-background").css("height", "100%");
             });
+        });
+
+        $(document).ready(function() {
 
             // 바깥 여백(검정색 배경) 클릭 이벤트
             $("#darken-background").click(function() {
@@ -420,9 +369,7 @@
         
         $(document).ready(function() {
 
-            $("#file-select").click(function() { 
-                
-            });
+            $("#file-select").click(function() {});
             $("#file-select").change(function() {
 
                 $("section").fadeOut(500);
@@ -460,12 +407,8 @@
                         j++;
                     }
                 }
-                
-                
-                // alert($('input.input-search').val());
-                
+
                 // 자동완성 기능
-                console.log(array);
                 $('input.input-search').autocomplete({source: array});
                 
                 // 새로 만든 div 요소의 클릭 이벤트 위임
@@ -502,9 +445,6 @@
                         "height":$(window).height()*(3/4)
                     });
 
-                    // console.log($("#lightbox").attr("width"));
-                    // console.log($("#lightbox").attr("height"));
-
                     // 라이트박스 내 이미지 크기 조절
                     $("#random-image").css({
                         "width":$(window).width()*(3/4),
@@ -512,20 +452,13 @@
                     });
 
                     $("#leftbox").css("top", $(document).scrollTop());
-                    $("#leftbox").css({"height":$("#lightbox").height()});
+                    $("#leftbox").css("height", $("#lightbox").height());
                     $("#rightbox").css("top", $(document).scrollTop());
-                    $("#rightbox").css({"height":$("#lightbox").height()});
+                    $("#rightbox").css("height", $("#lightbox").height());
                     // console.log($(".user-information-image").height());
                     showLightBox();
 
                     var papers =$(".paper");
-                
-                for(let i = 0; i < $(".paper").length; i++) {
-                    if($(this).get(0) == $(papers[i]).get(0)) {
-                        console.log("Find : " + array2[i]);
-                    }
-
-                }
                 });
 
                 var papers =$(".paper");
@@ -670,16 +603,7 @@
 
         });
 
-        // image와 제목 따로 따로 붙이기
-        // jpg, png 아이콘 붙이기
-        // 팝업 open, close 애니메이션
-        // 팝업 시 프린트, 링크 복사 아이콘 추가하기
-        // ...
-        // Jallery 타이틀 만들기
-        // 다른사람 레이아웃, 색상 영감 받고 적용하기
-
-        // 랜덤 이미지 주기
-        // 랜덤 색상 주기
+        // 태그 색상 랜덤
         $(document).ready(function() {
             
             var himg = $(".himg");
