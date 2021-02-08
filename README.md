@@ -29,8 +29,8 @@ Javascript 기본 학습
 마치 이미지 갤러리처럼 이미지를 그리드 형식으로 볼 수 있는  
 클라이언트 전용 웹페이지 입니다.
   
-![결과1](ref_images/intro_page.png "전체 웹페이지")  
-**- JALLERY 웹페이지에서 폴더를 선택하여 갤러리로 표현**
+>![결과1](ref_images/intro_page.png "전체 웹페이지")  
+>**- JALLERY 웹페이지에서 폴더를 선택하여 갤러리로 표현**
      
            
 ![결과2](ref_images/search_page.png "웹페이지 검색")  
