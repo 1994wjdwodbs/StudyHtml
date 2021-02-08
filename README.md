@@ -29,8 +29,8 @@ Javascript 기본 학습
 마치 이미지 갤러리처럼 이미지를 그리드 형식으로 볼 수 있는  
 클라이언트 전용 웹페이지 입니다.
   
-![결과1](ref_images/result_01.png "전체 레이아웃")
-![결과2](ref_images/result_02.png "팝업 레이아웃")
-![결과3](ref_images/result_02.png "팝업 레이아웃")
+![결과1](ref_images/intro_page.png "전체 웹페이지")
+![결과2](ref_images/search_page.png "웹피이지 검색")
+![결과3](ref_images/move_page.png "웹페이지 이동")
 
 [통합 프로젝트 소스](04_PROJECT)
