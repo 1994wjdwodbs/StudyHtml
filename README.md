@@ -39,6 +39,6 @@ Javascript 기본 학습
 >         
 >>![결과3](ref_images/move_page.png "웹페이지 이동")  
 >>**- JALLERY 웹페이지에서 이미지를 확대하고 좌우 방향키나 여백을 클릭하여 다음/이전 이미지로 이동**
-   
-         
-[(JALLERY 웹페이지 소스)](04_PROJECT)
+>   
+>         
+>[(JALLERY 웹페이지 소스)](04_PROJECT)
