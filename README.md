@@ -31,6 +31,6 @@ Javascript 기본 학습
   
 ![결과1](ref_images/result_01.png "전체 레이아웃")
 ![결과2](ref_images/result_02.png "팝업 레이아웃")
-
+![결과3](ref_images/result_02.png "팝업 레이아웃")
 
 [통합 프로젝트 소스](04_PROJECT)
