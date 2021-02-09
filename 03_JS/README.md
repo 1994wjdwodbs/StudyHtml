@@ -12,6 +12,6 @@
 
 ## 문서 객체 모델
 
-## 문서 객체 선택 및 
+## 문서 객체 선택 및 조작
 
 [이전](https://github.com/1994wjdwodbs/StudyHtml)
