@@ -37,7 +37,9 @@
 </html>
 ```
 
-## HTML5 입력 태그
+## HTML5 기본 태그
+
+## HTML5 입력 양식 태그와 구조화 태그
 ```html
 <!DOCTYPE html>
 <html>
@@ -74,4 +76,6 @@
     <!-- 사용자 입력 양식 -->
 </body>
 ```
+## HTML5 기본 태그
+
 [이전](https://github.com/1994wjdwodbs/StudyHtml)
