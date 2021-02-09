@@ -7,6 +7,6 @@
 
 ## 다양한 레이아웃의 구성과 기능
 
-## 반응형 
+## 반응형 웹
 
 [이전](https://github.com/1994wjdwodbs/StudyHtml)
