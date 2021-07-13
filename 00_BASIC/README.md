@@ -62,3 +62,18 @@ __SQL 데이터베이스__ <br/>
 __NoSQL 데이터베이스__ <br/>
 : 전통적인 RDBMS와 다른 DBMS, 데이터 저장에 고정된 테이블 스키마 필요 X, 조인 연산 사용 X, 수평적 확장 가능<br/>
 (Ex : Redis (Key/Value), MongoDB(Document), ...)<br/>
+
+
+## HTTP 프로토콜
+
+### 종단 시스템(end-system)
+최종 사용자(end-user)를 위한 애플리케이션을 수행하는 주체<br/>
+
+### 라우터(router)
+종단 시스템이 속한 네트워크와 다른 네트워크를 연결함으로써 서로 다른 네트워크에 속한 종단 시스템끼리 상호 데이터를 교환할 수 있도록 하는 장비<br/>
+
+### 종단 시스템과 라우터
+<p align="center">
+    <img src="images/종단_인터넷.JPG"><br/> 
+    <span><b>웹 브라우저 및 서버 </b></span>
+</p>
