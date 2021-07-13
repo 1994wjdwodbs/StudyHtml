@@ -21,3 +21,28 @@ HTTP 프로토콜을 사용해서 클라이언트가 브라우저를 통해서 �
     <img src="images/브라우저_서버_인터페이스.JPG"><br/> 
     <span><b>웹 브라우저 및 서버 </b></span>
 </p>
+
+### 웹서버 시스템 구성
+보통 __HTTP서버 + 웹응용프레임워크 + 데이터베이스__ 로 구성 (LAMP(Linux + Apache + MySQL + PHP), MAMP, WAMP)<br/>
+
+#### HTTP 서버
+
+|       이름      |            사용   플랫폼           |     라이센스    |                                                                          설 명                                                                         |
+|:---------------:|:----------------------------------:|:---------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------:|
+|      Apache     |     Unix,   Linux, Windows, Mac    |        APL      |     - 세계에서   가장   많이 사용하는 HTTP   서버     -   Perl,   Python, PHP, JSP 등   다양한 언어 지원 및 모듈 기능     -   http://www.apache.org    |
+|     lighttpd    |     Unix,   Linux, Windows, Mac    |        BSD      |     - FastCGI,   SCGI, HTTP proxy, WebDAV   지원     - OpenSSL을   통한 SSL,   TLS 지원     -   http://www.lighttpd.net                                |
+|       nginx     |     Unix,   Linux, Windows, Mac    |        BSD      |     - 동적   웹 페이지를 제공하는 HTTP   서버.     - 고부하(동시 10000개   접속)에도   저메모리(~2.5MB)   처리.     -   http://nginx.org/              |
+
+#### 웹 응용 프로그램(프레임워크)
+동적 웹 컨텐츠를 생성하는 __CGI 및 스크립트 프로그램__ , 웹 응용 프레임워크를 설치하여 웹 응용 프로그램을 구동<br/>
+
+|     사용 언어     |     종류                                                                          |
+|-------------------|-----------------------------------------------------------------------------------|
+|     Java          |     Struts, Wicket, Eclipse RAP,   Google Web Toolkit, JSF, JBoss Seam, Spring    |
+|     Javascript    |     node.js, SproutCore                                                           |
+|     Perl          |     Catalyst, Dancer                                                              |
+|     PHP           |     Zend Framework                                                                |
+|     Python        |     Django, Flask, Bottle, CherryPy, Grok,   Pylons, web2py                       |
+|     Ruby          |     Camping,   Ruby On Rails, Sinatra                                             |
+
+
