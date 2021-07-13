@@ -46,6 +46,16 @@ HTTP 프로토콜을 사용해서 클라이언트가 브라우저를 통해서 �
 |     Ruby          |     Camping,   Ruby On Rails, Sinatra                                             |
 
 #### 데이터베이스(DB)
+특정 조직의 업무를 수행하는데 필요한 상호 관련된 데이터들의 모임<br/>
+
+#### DBMS(DataBase Management System)
+사용자와 데이터베이스 사이에서 사용자의 요구에 따라 정보를 생성해 주고 데이터베이스를 관리해주는 소프트웨어<br/>
+> __DBMS 특징(5)__ <br/>
+> 1. 중복 최소화<br/>
+> 2. 데이터 공유성<br/>
+> 3. 데이터 일관성<br/>
+> 4. 데이터 무결성(정확성/정합성)<br/>
+> 5. 데이터 보안성<br/>
 
 __SQL 데이터베이스__ <br/>
 : MySQL(오픈소스 SQL DB), SQLite(하나의 파일이나 메모리에 데이터베이스를 두는 SQL DB), MsSQL, Oracle, MariaDB, ...<br/>
