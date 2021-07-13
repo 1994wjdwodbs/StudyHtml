@@ -16,6 +16,15 @@
 
 ## XMLHttpRequest
 
+## AJAX(Asynchronous Javascript And Xml)
+웹 브라우저 안에서 처리되는 __자바스크립트(javascript) 기술과 XMLHttpRequest 요청을 접목한 기술__ <br/>
+클라이언트 웹브라우저 측에서 웹 서버에 비동기적인 자료 요청, 응답 결과를 화면을 전환하여 새로운 페이지에 출력하지 않도록 처리<br/>
+
+> __AJAX 처리 과정__ <br/>
+> XMLHttpRequest 객체 생성<br/>
+> 요청에 대한 응답 결과를 처리할 함수 정의( __onreadystate__ )<br/>
+> HTML 문서(body)에 응답 결과를 나타낼 요소 표시<br/>
+
 ## CORS
 
 Cross-Origin Resource Sharing(CORS)은 추가적인 HTTP header를 사용해서 애플리케이션이 다른 origin의 리소스에 접근할 수 있도록 하는 메커니즘을 말합니다.<br/> 하지만 다른 origin에서 내 리소스에 함부로 접근하지 못하게 하기 위해 사용된다.<br/>
