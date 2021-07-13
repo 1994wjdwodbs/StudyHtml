@@ -45,4 +45,9 @@ HTTP 프로토콜을 사용해서 클라이언트가 브라우저를 통해서 �
 |     Python        |     Django, Flask, Bottle, CherryPy, Grok,   Pylons, web2py                       |
 |     Ruby          |     Camping,   Ruby On Rails, Sinatra                                             |
 
+#### 데이터베이스(DB)
 
+__SQL 데이터베이스__ <br/>
+: MySQL(오픈소스 SQL DB), SQLite(하나의 파일이나 메모리에 데이터베이스를 두는 SQL DB), MsSQL, Oracle, MariaDB, ...
+__NoSQL 데이터베이스__ <br/>
+: Redis (Key/Value), MongoDB(Document)
