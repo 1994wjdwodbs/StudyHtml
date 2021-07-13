@@ -64,6 +64,7 @@ __NoSQL 데이터베이스__ <br/>
 : 전통적인 RDBMS와 다른 DBMS, 데이터 저장에 고정된 테이블 스키마 필요 X, 조인 연산 사용 X, 수평적 확장 가능<br/>
 (Ex : Redis (Key/Value), MongoDB(Document), ...)<br/>
 
+---
 
 ## HTTP 프로토콜
 
