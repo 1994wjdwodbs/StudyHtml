@@ -102,3 +102,10 @@ __인터넷의 핵심 프로토콜인 TCP와 IP를 포함한 각종 프로토콜
 월드 와이드 웹(WWW) 상에서 정보를 주고받는 프로토콜이며 주로 HTML 문서를 주고받음, TCP/UDP 및 포트번호 80 사용<br/>
 __클라이언트와 서버 사이에 요청(request) 및 응답(response) 방식의 프로토콜__ <br/>
 
+<p align="center">
+    <img src="images/HTTP_프로토콜.JPG"><br/> 
+    <span><b>HTTP 프로토콜 메시지 구성</b></span>
+    <br/>
+    HTTP 프로토콜은 HTTP Request, Response 메시지로 구성되며 각 문자는 요청/응답 라인, 헤더(header), 빈 줄, 바디(body)로 구성하고<br/>
+    각 부분은 <b>new line(\r\n)</b> 문자로 구분한다.<br/>
+</p>
