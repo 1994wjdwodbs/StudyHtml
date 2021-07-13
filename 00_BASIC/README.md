@@ -89,6 +89,15 @@ __네트워크 요소들 간에 주고받는 메시지의 형식과 메시지의
 송수신되는 데이터의 블록, 링크 계층에서는 프레임(frame), ISO(International Standards Organization)에서는 PDU(Protocol Data Unit)<br/>
 , 상위의 응용 계층에서는 메시지(message)라 함.<br/>
 
+#### 사물 인터넷 프로토콜
+
+|                          이름                          |                                                                                                        설명                                                                                                       |
+|:------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| Restful HTTP/HTTPS                                     | 기존의 XML-RPC/SOAP에 비해 비교적 간단한   소프트웨어 구조      GET, POST, PUT, DELETE 등을 사용      전송 데이터 포맷 : XML, JSON, 텍스트(csv) 가능      폴링, Multipart XMLHttpRequest, HTML5 웹 소켓 기법 활용 |
+| MQTT      (MQ Telemetry Transport)                     | IBM 개발, 발행/구독 방식 경량 프로토콜      메시지 브로커를 통한 토픽(topic) 발행 및 구독      MQTT-SN(센서 네트워크용 프로토콜) 개발                                                                             |
+| CoAP      (Constrained Application Protocol)           | TCP가 아닌 네트워크용 메시지 전송 프로토콜      주로 6LowPaN과 같은 센서 네트워크에서 사용                                                                                                                        |
+| XMPP      (eXtensible Messaging and Presence Protocol) | 인스턴스 메시징 시스템에서 발전된 XML 기반   프로토콜      서비스 발견 프로토콜 포함, 다양한 IoT 응용에 적용                                                                                                      |
+
 #### TCP/IP 프로토콜
 __인터넷의 핵심 프로토콜인 TCP와 IP를 포함한 각종 프로토콜__ <br/>
 운영체제에서 구현을 제공하며, 일반 애플리케이션은 운영체제가 제공하는 TCP/IP 프로토콜의 서비스를 사용하여 통신을 수행<br/>
