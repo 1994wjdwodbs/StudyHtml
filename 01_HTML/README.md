@@ -106,6 +106,24 @@
 </body>
 </html>
 ```
+
+### 시맨틱 웹
+특정 태그에 의미를 부여한 웹 (프로그램이 코드를 읽고 의미를 인식할 수 있는 지능형 웹)
+
+### 시맨틱 태그
+시맨틱 태그를 사용한 시맨틱 웹 구현
+
+<p align="center">
+    <img src="images/시맨틱웹.jpg"><br/>
+    <span><b>시맨틱 웹 구성</b></span>
+</p>
+
+<p align="center">
+    <img src="images/시맨틱태그.jpg"><br/>
+    <span><b>HTML5 시맨틱 태그</b></span>
+</p>
+
+
 ```html
 <!--시맨틱 태그-->
 <!DOCTYPE html>
