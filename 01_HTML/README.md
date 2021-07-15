@@ -78,6 +78,9 @@
 ## HTML5 구조화 태그
 ```html
 <!--공간 분할 태그-->
+```
+```html
+<!--시맨틱 태그-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -121,9 +124,6 @@
     </footer>
 </body>
 </html>
-```
-```html
-<!-- 태그-->
 ```
 
 [이전](https://github.com/1994wjdwodbs/StudyHtml)
