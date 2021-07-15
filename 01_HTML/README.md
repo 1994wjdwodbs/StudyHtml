@@ -78,6 +78,27 @@
 ## HTML5 구조화 태그
 ```html
 <!--공간 분할 태그-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+</head>
+<body>
+    <div>div 태그 - block 형식</div>
+    <div>div 태그 - block 형식</div>
+    <div>div 태그 - block 형식</div>
+    <div>div 태그 - block 형식</div>
+    <div>div 태그 - block 형식</div>
+    <br>
+    <span>span 태그 - 인라인형식</span>
+    <span>span 태그 - 인라인형식</span>
+    <span>span 태그 - 인라인형식</span>
+    <span>span 태그 - 인라인형식</span>
+    <span>span 태그 - 인라인형식</span>
+</body>
+</html>
 ```
 ```html
 <!--시맨틱 태그-->
